@@ -11,6 +11,8 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,8 @@ import com.rentalmanager.entity.UserLogin;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	private final Map<String, List<String>> userDb = new HashMap<>();
 
 	public UserController() {
@@ -35,6 +38,7 @@ public class UserController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public LoginResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
 		LoginResponseDTO response = new LoginResponseDTO();
+		logger.debug("Controller called");
 		if (login.getEmail() == null || !userDb.containsKey(login.getEmail())) {
 			response.setResponseMsg("User does not exists");
 			response.setSuccess(Boolean.FALSE);
