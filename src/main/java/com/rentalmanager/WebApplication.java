@@ -13,17 +13,17 @@ import com.rentalmanager.filter.JwtFilter;
 @ComponentScan
 @Configuration
 public class WebApplication {
-    @Bean
-    public FilterRegistrationBean jwtFilter() {
-        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter(new JwtFilter());
-        registrationBean.addUrlPatterns("/api/*");
+	@Bean
+	public FilterRegistrationBean jwtFilter() {
+		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		registrationBean.setFilter(new JwtFilter());
+		registrationBean.addUrlPatterns("/api/*");
 
-        return registrationBean;
-    }
+		return registrationBean;
+	}
 
-    public static void main(final String[] args) throws Exception {
-        SpringApplication.run(WebApplication.class, args);
-    }
+	public static void main(final String[] args) throws Exception {
+		SpringApplication.run(WebApplication.class, args);
+	}
 
 }
