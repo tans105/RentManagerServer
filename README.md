@@ -1,4 +1,4 @@
-# RENT MANAGER SERVER (JSON Web Token  / Spring Boot example)
+# Rent Manager Server (JSON Web Token  / Spring Boot example)
 
 
 This is an example project where a Spring REST API is secured using JSON Web Tokens. Since there are relatively few examples available for Java and there are some pitfalls (such as most sources pointing to a Java lib that's not straightforward to use) I decided to extract my proof of concept into a stand-alone example and publish it for all to see.
