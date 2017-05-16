@@ -13,6 +13,10 @@ import java.io.Serializable;
 public class QueryFilterCriterion implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String OPERATOR_EQUALS= " = " ;
 	public static final String OPERATOR_LESS_THAN=" < ";
 	public static final String OPERATOR_LESS_THAN_OR_EQUALS=" <= ";

@@ -35,6 +35,7 @@ public class GenericDao {
 				criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
 			}
 			criteria.setMaxResults(1);
+			@SuppressWarnings("unchecked")
 			List<Object> entityList = criteria.list();
 			tx.commit();
 			tx = null;
@@ -52,10 +53,12 @@ public class GenericDao {
 		return null;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public List<SelectListData> getSelectListData(Class claz, List<String> attributes, String filter) {
 		return getSelectListData(claz.getName(), attributes, filter);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public List<SelectListData> getSelectListData(String clazStr, List<String> attributes, String filter) {
 		Session session = null;
 		List list = null;
@@ -120,6 +123,7 @@ public class GenericDao {
 		return selectList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> executeSQlQueryReturnAsListOfMaps(String sqlQuery) {
 
 		Session session = null;
@@ -166,6 +170,7 @@ public class GenericDao {
 		return false;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public int getTotaRowCount(String queryStr1) {
 		Session session = null;
 		Transaction tx = null;
@@ -192,6 +197,7 @@ public class GenericDao {
 		return totalRows;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<HashMap> executeSqlQueryReturnAsMap(String qry) {
 
 		Session session = null;
@@ -225,7 +231,6 @@ public class GenericDao {
 	 * @param qry
 	 * @return number of rows updated
 	 */
-	@SuppressWarnings("unchecked")
 	public int exeucteSqlQueryUpdate(String qry) {
 
 		Session session = null;

@@ -3,11 +3,9 @@ package com.rentalmanager.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class PasswordUtil {
-	private static final Logger logger = LoggerFactory.getLogger(PasswordUtil.class);
 	private static MessageDigest md;
 
 	public String encryptPassword(String pass) {

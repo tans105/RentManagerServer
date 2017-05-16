@@ -8,6 +8,8 @@ import org.hibernate.service.ServiceRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.rentalmanager.constants.Constants;
+
 public class HibernateUtils {
 
 	private static SessionFactory sessionFactory;
@@ -19,7 +21,7 @@ public class HibernateUtils {
 			if (sessionFactory == null) {
 				logger.debug("Creating 1st Instance of Session Factory");
 				Configuration configuration = new Configuration();
-				configuration.configure("com/rentalmanager/hibernate/hibernate.cfg.xml");
+				configuration.configure(Constants.HIBERNATE_CONFIG_PATH);
 
 				serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 
