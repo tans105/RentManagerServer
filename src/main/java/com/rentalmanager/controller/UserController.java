@@ -35,7 +35,7 @@ public class UserController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public LoginResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
 		LoginResponseDTO response = new LoginResponseDTO();
-		if (login.getName() == null || !userDb.containsKey(login.getName())) {
+		if (login.getEmail() == null || !userDb.containsKey(login.getEmail())) {
 			response.setResponseMsg("User does not exists");
 			response.setSuccess(Boolean.FALSE);
 			response.setToken(null);
@@ -43,7 +43,7 @@ public class UserController {
 		} else {
 			response.setResponseMsg("User Authenticated");
 			response.setSuccess(Boolean.TRUE);
-			response.setToken(Jwts.builder().setSubject(login.getName()).claim("roles", userDb.get(login.getName())).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
+			response.setToken(Jwts.builder().setSubject(login.getEmail()).claim("roles", userDb.get(login.getEmail())).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
 			return response;
 		}
 	}
