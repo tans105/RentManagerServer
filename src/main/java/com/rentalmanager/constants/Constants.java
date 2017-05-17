@@ -11,4 +11,8 @@ public static final String SUCCESSFUL_AUTHENTICATION="Authenticated Successfully
 
 
 public static final String HIBERNATE_CONFIG_PATH="com/rentalmanager/hibernate/Hibernate.cfg.xml";
+public static final String MODULE_JSON_PATH="module.json";
+
+public static final String ROLE_ADMIN="admin";
+public static final String ROLE_TENANT="tenant";
 }

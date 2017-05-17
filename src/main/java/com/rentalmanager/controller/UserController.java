@@ -53,7 +53,7 @@ public class UserController {
 				RoleMst role=service.getRole(userProfile.getRoleId());
 				response.setResponseMsg(Constants.SUCCESSFUL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
-				logger.debug("ROLE::"+role.getRole());
+				response.setModuleList(service.readModuleList(userProfile.getRoleId()));
 				response.setToken(Jwts.builder().setSubject(login.getEmail()).claim("role", role.getRole()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
 				return response;
 			} else {

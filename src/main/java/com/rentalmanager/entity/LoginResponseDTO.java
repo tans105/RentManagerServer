@@ -1,12 +1,23 @@
 package com.rentalmanager.entity;
 
+import java.util.List;
+
 public class LoginResponseDTO {
 	private String token;
 	private Boolean success;
 	private String responseMsg;
+	private List<String> moduleList;
 
 	public String getToken() {
 		return token;
+	}
+
+	public List<String> getModuleList() {
+		return moduleList;
+	}
+
+	public void setModuleList(List<String> moduleList) {
+		this.moduleList = moduleList;
 	}
 
 	public void setToken(String token) {
