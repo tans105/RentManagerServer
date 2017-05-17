@@ -14,6 +14,7 @@ public class UserDao {
 	public Users getUser(String email) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("email", email);
+		map.put("active", Boolean.TRUE);
 		return dao.getEntityByProperty(map, Users.class);
 	}
 

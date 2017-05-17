@@ -10,6 +10,8 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +30,10 @@ import com.rentalmanager.utils.PasswordUtil;
 public class UserController {
 
 	private final Map<String, List<String>> userDb = new HashMap<>();
+	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@RequestMapping(value = "authenticate", method = RequestMethod.POST)
 	public LoginResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
 		UserService service = new UserService();
 		Users userProfile = service.getUser(login.getEmail());
@@ -45,8 +48,7 @@ public class UserController {
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
 				response.setResponseMsg(Constants.SUCCESSFULL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
-				response.setToken(Jwts.builder().setSubject(login.getEmail()).claim("roles", userDb.get(login.getEmail())).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey")
-						.compact());
+				response.setToken(Jwts.builder().setSubject(login.getEmail()).claim("roles", userProfile.getRoleId()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
 				return response;
 			} else {
 				response.setResponseMsg(Constants.PASSWORD_INCORRECT);
