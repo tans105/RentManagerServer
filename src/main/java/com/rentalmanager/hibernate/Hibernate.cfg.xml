@@ -15,5 +15,6 @@
 		<property name="cache.use_second_level_cache">false</property>
 		
 		<mapping resource="com/rentalmanager/entity/Users.hbm.xml"/>
+		<mapping resource="com/rentalmanager/entity/RoleMst.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

@@ -4,9 +4,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.entity.LoginResponseDTO;
+import com.rentalmanager.entity.RoleMst;
 import com.rentalmanager.entity.UserLogin;
 import com.rentalmanager.entity.Users;
 import com.rentalmanager.service.UserService;
@@ -29,7 +27,7 @@ import com.rentalmanager.utils.PasswordUtil;
 @RequestMapping("/user")
 public class UserController {
 
-	private final Map<String, List<String>> userDb = new HashMap<>();
+	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@CrossOrigin(origins = "*")
@@ -49,11 +47,14 @@ public class UserController {
 				response.setResponseMsg("User is not active, Contact Admin");
 				response.setSuccess(Boolean.FALSE);
 				response.setToken(null);
+				return response;
 			}
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
-				response.setResponseMsg(Constants.SUCCESSFULL_AUTHENTICATION);
+				RoleMst role=service.getRole(userProfile.getRoleId());
+				response.setResponseMsg(Constants.SUCCESSFUL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
-				response.setToken(Jwts.builder().setSubject(login.getEmail()).claim("roles", userProfile.getRoleId()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
+				logger.debug("ROLE::"+role.getRole());
+				response.setToken(Jwts.builder().setSubject(login.getEmail()).claim("role", role.getRole()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
 				return response;
 			} else {
 				response.setResponseMsg(Constants.PASSWORD_INCORRECT);

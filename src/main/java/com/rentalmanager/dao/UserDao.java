@@ -2,6 +2,7 @@ package com.rentalmanager.dao;
 
 import java.util.HashMap;
 
+import com.rentalmanager.entity.RoleMst;
 import com.rentalmanager.entity.Users;
 
 public class UserDao {
@@ -12,10 +13,16 @@ public class UserDao {
 	}
 
 	public Users getUser(String email) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("email", email);
-		map.put("active", Boolean.TRUE);
-		return dao.getEntityByProperty(map, Users.class);
+		HashMap<String, Object> filter = new HashMap<String, Object>();
+		filter.put("email", email);
+		filter.put("active", Boolean.TRUE);
+		return dao.getEntityByProperty(filter, Users.class);
+	}
+
+	public RoleMst getRole(Integer roleId) {
+		HashMap<String, Object> filter = new HashMap<String, Object>();
+		filter.put("roleId", roleId);
+		return dao.getEntityByProperty(filter, RoleMst.class);
 	}
 
 }
