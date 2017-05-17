@@ -45,6 +45,11 @@ public class UserController {
 			return response;
 		} else {
 			PasswordUtil passUtil = new PasswordUtil();
+			if (!userProfile.getActive()) {
+				response.setResponseMsg("User is not active, Contact Admin");
+				response.setSuccess(Boolean.FALSE);
+				response.setToken(null);
+			}
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
 				response.setResponseMsg(Constants.SUCCESSFULL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
