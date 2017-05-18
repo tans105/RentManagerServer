@@ -50,7 +50,7 @@ public class UserController {
 				return response;
 			}
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
-				RoleMst role=service.getRole(userProfile.getRoleId());
+				RoleMst role = service.getRole(userProfile.getRoleId());
 				response.setResponseMsg(Constants.SUCCESSFUL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
 				response.setModuleList(service.readModuleList(userProfile.getRoleId()));

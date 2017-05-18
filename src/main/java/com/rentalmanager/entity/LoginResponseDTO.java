@@ -6,17 +6,17 @@ public class LoginResponseDTO {
 	private String token;
 	private Boolean success;
 	private String responseMsg;
-	private List<String> moduleList;
+	private List<Module> moduleList;
 
 	public String getToken() {
 		return token;
 	}
 
-	public List<String> getModuleList() {
+	public List<Module> getModuleList() {
 		return moduleList;
 	}
 
-	public void setModuleList(List<String> moduleList) {
+	public void setModuleList(List<Module> moduleList) {
 		this.moduleList = moduleList;
 	}
 
