@@ -16,8 +16,8 @@ import com.google.gson.Gson;
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.dao.UserDao;
 import com.rentalmanager.entity.Module;
-import com.rentalmanager.entity.RoleMst;
-import com.rentalmanager.entity.Users;
+import com.rentalmanager.entity.database.RoleMst;
+import com.rentalmanager.entity.database.Users;
 import com.rentalmanager.tester.JsonFileRead;
 
 public class UserService {

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.rentalmanager.dao.GenericDao;
-import com.rentalmanager.entity.Users;
+import com.rentalmanager.entity.database.Users;
 
 public class DatabaseConnectionTester {
 	public static void main(String[] args) {

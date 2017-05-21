@@ -2,8 +2,8 @@ package com.rentalmanager.dao;
 
 import java.util.HashMap;
 
-import com.rentalmanager.entity.RoleMst;
-import com.rentalmanager.entity.Users;
+import com.rentalmanager.entity.database.RoleMst;
+import com.rentalmanager.entity.database.Users;
 
 public class UserDao {
 	private GenericDao dao;

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.entity.LoginResponseDTO;
-import com.rentalmanager.entity.RoleMst;
 import com.rentalmanager.entity.UserLogin;
-import com.rentalmanager.entity.Users;
+import com.rentalmanager.entity.database.RoleMst;
+import com.rentalmanager.entity.database.Users;
 import com.rentalmanager.service.UserService;
 import com.rentalmanager.utils.PasswordUtil;
 

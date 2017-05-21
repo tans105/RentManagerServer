@@ -15,7 +15,6 @@ import com.google.gson.Gson;
 import com.rentalmanager.entity.Module;
 
 public class JsonFileRead {
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws org.json.simple.parser.ParseException {
 		JSONParser parser = new JSONParser();
 		String fileName = "module.json";
@@ -34,6 +33,7 @@ public class JsonFileRead {
 
 			// loop array
 			JSONArray lang = (JSONArray) jsonObject.get("admin");
+			@SuppressWarnings("unused")
 			List<Module> moduleList=new LinkedList<Module>();
 			for(int i=0;i<lang.size();i++){
 				System.out.println(lang.get(i));
