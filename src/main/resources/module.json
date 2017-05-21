@@ -2,26 +2,35 @@
 	"admin": 
 	[
 		{
+			"moduleName": "Update Profile",
+			"moduleLink": "profileManagement"
+		},
+		{
 			"moduleName": "User Management",
-			"moduleLink": "admin"
+			"moduleLink": "userManagement"
 		},
 
 		{
-			"moduleName": "Profile Management",
-			"moduleLink": "users"
+			"moduleName": "Rooms Management",
+			"moduleLink": "roomManagement"
+		},
+
+		{
+			"moduleName": "Room Allotment",
+			"moduleLink": "roomAllotment"
+		},
+
+		{
+			"moduleName": "Approve Rents",
+			"moduleLink": "approveRent"
 		}
 	],
 
 	"tenant": 
 	[
 		{
-			"moduleName": "T User Management",
-			"moduleLink": "admin"
-		},
-
-		{
-			"moduleName": "T Profile Management",
-			"moduleLink": "users"
+			"moduleName": "Update Profile",
+			"moduleLink": "ProfileManagement"
 		}
 	]
 }
