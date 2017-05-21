@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 16 Sep, 2013 11:50:22 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.rentalmanager.entity.RoleMst" table="role_mst" schema="public">
+    <class name="com.rentalmanager.entity.database.RoleMst" table="role_mst" schema="public">
         <id name="roleId" type="java.lang.Integer">
             <column name="role_id" />
             <generator class="assigned" />
