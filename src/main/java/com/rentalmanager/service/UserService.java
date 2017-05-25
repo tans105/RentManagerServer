@@ -16,6 +16,8 @@ import com.google.gson.Gson;
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.dao.UserDao;
 import com.rentalmanager.entity.Module;
+import com.rentalmanager.entity.database.Login;
+import com.rentalmanager.entity.database.PersonalDetails;
 import com.rentalmanager.entity.database.RoleMst;
 import com.rentalmanager.entity.database.Users;
 import com.rentalmanager.tester.JsonFileRead;
@@ -58,5 +60,13 @@ public class UserService {
 		}
 
 		return moduleList;
+	}
+
+	public Login getLogin(String userId) {
+		return dao.getLogin(userId);
+	}
+
+	public PersonalDetails getPersonalDetails(String userId) {
+		return dao.getPersonalDetails(userId);
 	}
 }

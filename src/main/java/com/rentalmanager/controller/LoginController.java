@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.base.Strings;
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.entity.LoginResponseDTO;
 import com.rentalmanager.entity.UserLogin;
+import com.rentalmanager.entity.database.Login;
+import com.rentalmanager.entity.database.PersonalDetails;
 import com.rentalmanager.entity.database.RoleMst;
-import com.rentalmanager.entity.database.Users;
 import com.rentalmanager.service.UserService;
 import com.rentalmanager.utils.PasswordUtil;
 
@@ -27,14 +30,15 @@ import com.rentalmanager.utils.PasswordUtil;
 @RequestMapping("/user")
 public class LoginController {
 
-	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "authenticate", method = RequestMethod.POST)
 	public LoginResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
 		UserService service = new UserService();
-		Users userProfile = service.getUser(login.getEmail());
+		//		Users userProfile = service.getUser(login.getUserId());
+		logger.debug("LOGGED IN USER " + login.getUserId());
+		Login userProfile = service.getLogin(login.getUserId());
 		LoginResponseDTO response = new LoginResponseDTO();
 		if (userProfile == null) {
 			response.setResponseMsg(Constants.USER_NOT_FOUND);
@@ -51,10 +55,21 @@ public class LoginController {
 			}
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
 				RoleMst role = service.getRole(userProfile.getRoleId());
+				PersonalDetails pd = service.getPersonalDetails(userProfile.getUserId());
+				
+				HashMap<String, Object> claims = new HashMap<String, Object>();
+				claims.put("role", role.getRole());
+				logger.debug("FIRST NAME-------------"+userProfile.getUserId());
+				claims.put("firstName", pd.getFirstName());
+				if (Strings.isNullOrEmpty(pd.getMiddleName()))
+					claims.put("middleName", pd.getMiddleName());
+				if (Strings.isNullOrEmpty(pd.getMiddleName()))
+					claims.put("lastName", pd.getLastName());
+
 				response.setResponseMsg(Constants.SUCCESSFUL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
 				response.setModuleList(service.readModuleList(userProfile.getRoleId()));
-				response.setToken(Jwts.builder().setSubject(login.getEmail()).claim("role", role.getRole()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
+				response.setToken(Jwts.builder().setSubject(login.getUserId()).setClaims(claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
 				return response;
 			} else {
 				response.setResponseMsg(Constants.PASSWORD_INCORRECT);
@@ -64,5 +79,4 @@ public class LoginController {
 			}
 		}
 	}
-
 }

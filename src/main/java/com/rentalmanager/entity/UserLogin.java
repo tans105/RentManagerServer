@@ -1,7 +1,7 @@
 package com.rentalmanager.entity;
 
 public class UserLogin {
-	private String email;
+	private String userId;
 	private String password;
 
 	
@@ -13,11 +13,13 @@ public class UserLogin {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
+
+	
 }
