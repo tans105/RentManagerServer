@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.rentalmanager.entity.database.Login" table="login"
+		schema="public">
+		<id name="userId" type="string">
+			<column name="user_id" length="100" />
+			<generator class="com.rentalmanager.utils.UserIdentityGenerator"/>
+		</id>
+		<property name="hostelId" type="string">
+			<column name="hostel_id" length="100" />
+		</property>
+		<property name="password" type="string">
+			<column name="password" length="100" />
+		</property>
+		<property name="token" type="string">
+			<column name="token" length="100" />
+		</property>
+		<property name="lastLoginDtm" type="timestamp">
+			<column name="last_login_dtm" length="100" />
+		</property>
+		<property name="roleId" type="java.lang.Integer">
+			<column name="role_id" />
+		</property>
+		<property name="active" type="java.lang.Boolean">
+			<column name="active" />
+		</property>
+
+	</class>
+</hibernate-mapping>

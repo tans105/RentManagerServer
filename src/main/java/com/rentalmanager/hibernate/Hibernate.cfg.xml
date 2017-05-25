@@ -16,5 +16,6 @@
 		
 		<mapping resource="com/rentalmanager/entity/database/Users.hbm.xml"/>
 		<mapping resource="com/rentalmanager/entity/database/RoleMst.hbm.xml"/>
+		<mapping resource="com/rentalmanager/entity/database/Login.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

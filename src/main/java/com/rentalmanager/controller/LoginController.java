@@ -25,10 +25,10 @@ import com.rentalmanager.utils.PasswordUtil;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class LoginController {
 
 	@SuppressWarnings("unused")
-	private static Logger logger = LoggerFactory.getLogger(UserController.class);
+	private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "authenticate", method = RequestMethod.POST)

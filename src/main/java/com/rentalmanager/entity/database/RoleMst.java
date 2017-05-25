@@ -3,7 +3,8 @@ package com.rentalmanager.entity.database;
 public class RoleMst {
 	private Integer roleId;
 	private String role;
-
+	private String roleAbbr;
+	
 	public Integer getRoleId() {
 		return roleId;
 	}
@@ -18,5 +19,13 @@ public class RoleMst {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getRoleAbbr() {
+		return roleAbbr;
+	}
+
+	public void setRoleAbbr(String roleAbbr) {
+		this.roleAbbr = roleAbbr;
 	}
 }
