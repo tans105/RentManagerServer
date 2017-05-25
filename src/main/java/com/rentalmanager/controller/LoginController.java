@@ -48,7 +48,7 @@ public class LoginController {
 		} else {
 			PasswordUtil passUtil = new PasswordUtil();
 			if (!userProfile.getActive()) {
-				response.setResponseMsg("User is not active, Contact Admin");
+				response.setResponseMsg(Constants.INACTIVE_USER);
 				response.setSuccess(Boolean.FALSE);
 				response.setToken(null);
 				return response;
@@ -59,7 +59,6 @@ public class LoginController {
 				
 				HashMap<String, Object> claims = new HashMap<String, Object>();
 				claims.put("role", role.getRole());
-				logger.debug("FIRST NAME-------------"+userProfile.getUserId());
 				claims.put("firstName", pd.getFirstName());
 				if (Strings.isNullOrEmpty(pd.getMiddleName()))
 					claims.put("middleName", pd.getMiddleName());

@@ -8,6 +8,7 @@ public class Constants {
 public static final String USER_NOT_FOUND="User not present";
 public static final String PASSWORD_INCORRECT="Incorrect Password";
 public static final String SUCCESSFUL_AUTHENTICATION="Authenticated Successfully";
+public static final String INACTIVE_USER="User is not active, Contact Admin";
 
 /*
  * Config paths

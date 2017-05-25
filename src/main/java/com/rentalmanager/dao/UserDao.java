@@ -32,7 +32,6 @@ public class UserDao {
 	}
 
 	public PersonalDetails getPersonalDetails(String userId) {
-		System.out.println("FETCHING PERSONAL DETAILS "+userId);
 		HashMap<String, Object> filter = new HashMap<String, Object>();
 		filter.put("userId", userId);
 		return dao.getEntityByProperty(filter, PersonalDetails.class);
