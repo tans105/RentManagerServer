@@ -7,7 +7,11 @@
  * 	
  *******************************************************************************/
 package com.rentalmanager.entity;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class SelectListData {
 
 	private String code;

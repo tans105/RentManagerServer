@@ -1,5 +1,9 @@
 package com.rentalmanager.entity;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class UserLogin {
 	private String userId;
 	private String password;

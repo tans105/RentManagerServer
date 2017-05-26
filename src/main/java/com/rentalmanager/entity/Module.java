@@ -1,5 +1,9 @@
 package com.rentalmanager.entity;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class Module {
 	private String moduleName;
 	private String moduleLink;

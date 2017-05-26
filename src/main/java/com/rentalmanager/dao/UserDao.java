@@ -16,7 +16,11 @@ import com.rentalmanager.entity.database.RoleMst;
 import com.rentalmanager.entity.database.Users;
 import com.rentalmanager.utils.DbUtil;
 import com.rentalmanager.utils.HibernateUtils;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class UserDao {
 	private GenericDao dao;
 	private static final String FIRST = "0000000000";

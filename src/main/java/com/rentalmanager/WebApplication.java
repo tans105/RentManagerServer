@@ -8,7 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.rentalmanager.filter.JwtFilter;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 @EnableAutoConfiguration
 @ComponentScan
 @Configuration

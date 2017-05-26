@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rentalmanager.constants.Constants;
-import com.rentalmanager.dao.GenericDao;
 import com.rentalmanager.entity.GenericResponseDTO;
 import com.rentalmanager.entity.Module;
 import com.rentalmanager.entity.UserLogin;

@@ -7,7 +7,11 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class DbUtil {
 
 	public static String getWhereClause(Map<String, QueryFilterCriterion> map,String query){

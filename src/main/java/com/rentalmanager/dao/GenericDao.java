@@ -19,7 +19,11 @@ import org.slf4j.LoggerFactory;
 import com.rentalmanager.entity.SelectListData;
 import com.rentalmanager.utils.DbUtil;
 import com.rentalmanager.utils.HibernateUtils;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class GenericDao {
 
 	private static Logger logger = LoggerFactory.getLogger(GenericDao.class);

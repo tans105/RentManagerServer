@@ -8,7 +8,11 @@ import org.hibernate.id.IdentifierGenerator;
 
 import com.rentalmanager.dao.UserDao;
 import com.rentalmanager.entity.database.Login;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class UserIdentityGenerator implements IdentifierGenerator {
 	private static final Integer ABBR_LENGTH = 3;
 

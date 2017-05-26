@@ -1,7 +1,11 @@
 package com.rentalmanager.entity.database;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class HostelMst {
 	private String hostelId;
 	private String hostelName;

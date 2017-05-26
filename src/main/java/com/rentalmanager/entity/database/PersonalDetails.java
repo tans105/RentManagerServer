@@ -1,5 +1,9 @@
 package com.rentalmanager.entity.database;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class PersonalDetails {
 	private String userId;
 	private String firstName;

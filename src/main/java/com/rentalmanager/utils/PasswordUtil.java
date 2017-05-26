@@ -2,7 +2,11 @@ package com.rentalmanager.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 
 
 public class PasswordUtil {

@@ -23,7 +23,11 @@ import com.rentalmanager.entity.database.PersonalDetails;
 import com.rentalmanager.entity.database.RoleMst;
 import com.rentalmanager.entity.database.Users;
 import com.rentalmanager.tester.JsonFileRead;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class UserService {
 	private UserDao dao;
 

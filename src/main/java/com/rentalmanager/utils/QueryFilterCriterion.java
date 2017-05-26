@@ -9,7 +9,11 @@
 package com.rentalmanager.utils;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 public class QueryFilterCriterion implements Serializable{
 	
 	
