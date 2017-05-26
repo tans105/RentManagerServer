@@ -5,6 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.dao.GenericDao;
 import com.rentalmanager.entity.LoginResponseDTO;
+import com.rentalmanager.entity.Module;
 import com.rentalmanager.entity.UserLogin;
 import com.rentalmanager.entity.database.HostelMst;
 import com.rentalmanager.entity.database.Login;
@@ -41,45 +43,37 @@ public class LoginController {
 		Login userProfile = service.getLogin(login.getUserId());
 		LoginResponseDTO response = new LoginResponseDTO();
 		if (userProfile == null) {
-			response.setResponseMsg(Constants.USER_NOT_FOUND);
-			response.setSuccess(Boolean.FALSE);
-			response.setToken(null);
-			return response;
+			return generateResponse(response, Constants.USER_NOT_FOUND, Boolean.FALSE, null, null);
 		} else {
 			PasswordUtil passUtil = new PasswordUtil();
 			if (!userProfile.getActive()) {
-				response.setResponseMsg(Constants.INACTIVE_USER);
-				response.setSuccess(Boolean.FALSE);
-				response.setToken(null);
-				return response;
+				return generateResponse(response, Constants.INACTIVE_USER, Boolean.FALSE, null, null);
 			}
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
 				RoleMst role = service.getRole(userProfile.getRoleId());
 				PersonalDetails pd = service.getPersonalDetails(userProfile.getUserId());
 				HostelMst hostel = service.getHostelDetails(userProfile.getHostelId());
 				if (hostel == null) {
-					response.setResponseMsg(Constants.HOSTEL_BLOCKED);
-					response.setToken(null);
-					response.setSuccess(Boolean.FALSE);
-					return response;
+					return generateResponse(response, Constants.HOSTEL_BLOCKED, Boolean.FALSE, null, null);
 				}
 				HashMap<String, Object> claims = assignClaims(role, pd, hostel);
-				response.setResponseMsg(Constants.SUCCESSFUL_AUTHENTICATION);
-				response.setSuccess(Boolean.TRUE);
-				response.setModuleList(service.readModuleList(userProfile.getRoleId()));
-				String token=Jwts.builder().setSubject(login.getUserId()).setClaims(claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
+				String token = Jwts.builder().setSubject(login.getUserId()).setClaims(claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, Constants.SECRET).compact();
 				userProfile.setLastLoginDtm(new Date());
 				userProfile.setToken(token);
 				service.updateLoginDetails(userProfile);
-				response.setToken(token);
-				return response;
+				return generateResponse(response, Constants.SUCCESSFUL_AUTHENTICATION, Boolean.TRUE, token, service.readModuleList(userProfile.getRoleId()));
 			} else {
-				response.setResponseMsg(Constants.PASSWORD_INCORRECT);
-				response.setSuccess(Boolean.FALSE);
-				response.setToken(null);
-				return response;
+				return generateResponse(response, Constants.PASSWORD_INCORRECT, Boolean.FALSE, null, null);
 			}
 		}
+	}
+
+	private LoginResponseDTO generateResponse(LoginResponseDTO response, String responseMsg, Boolean success, String token, List<Module> list) {
+		response.setResponseMsg(responseMsg);
+		response.setSuccess(success);
+		response.setToken(token);
+		response.setModuleList(list);
+		return response;
 	}
 
 	private HashMap<String, Object> assignClaims(RoleMst role, PersonalDetails pd, HostelMst hostel) {
@@ -93,4 +87,5 @@ public class LoginController {
 		claims.put(Constants.HOSTEL_ID, hostel.getHostelId());
 		return claims;
 	}
+
 }
