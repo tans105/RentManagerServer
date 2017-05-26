@@ -1,8 +1,12 @@
 package com.rentalmanager.entity;
 
 import java.util.List;
-
-public class LoginResponseDTO {
+/**
+ * 
+ * @author tanmay
+ *
+ */
+public class GenericResponseDTO {
 	private String token;
 	private Boolean success;
 	private String responseMsg;

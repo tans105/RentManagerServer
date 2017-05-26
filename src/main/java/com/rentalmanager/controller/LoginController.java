@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.dao.GenericDao;
-import com.rentalmanager.entity.LoginResponseDTO;
+import com.rentalmanager.entity.GenericResponseDTO;
 import com.rentalmanager.entity.Module;
 import com.rentalmanager.entity.UserLogin;
 import com.rentalmanager.entity.database.HostelMst;
@@ -28,7 +28,11 @@ import com.rentalmanager.entity.database.PersonalDetails;
 import com.rentalmanager.entity.database.RoleMst;
 import com.rentalmanager.service.UserService;
 import com.rentalmanager.utils.PasswordUtil;
-
+/**
+ * 
+ * @author tanmay
+ *
+ */
 @RestController
 @RequestMapping("/user")
 public class LoginController {
@@ -37,11 +41,11 @@ public class LoginController {
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "authenticate", method = RequestMethod.POST)
-	public LoginResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
+	public GenericResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
 		UserService service = new UserService();
 		logger.debug("LOGGED IN USER " + login.getUserId());
 		Login userProfile = service.getLogin(login.getUserId());
-		LoginResponseDTO response = new LoginResponseDTO();
+		GenericResponseDTO response = new GenericResponseDTO();
 		if (userProfile == null) {
 			return generateResponse(response, Constants.USER_NOT_FOUND, Boolean.FALSE, null, null);
 		} else {
@@ -68,7 +72,7 @@ public class LoginController {
 		}
 	}
 
-	private LoginResponseDTO generateResponse(LoginResponseDTO response, String responseMsg, Boolean success, String token, List<Module> list) {
+	private GenericResponseDTO generateResponse(GenericResponseDTO response, String responseMsg, Boolean success, String token, List<Module> list) {
 		response.setResponseMsg(responseMsg);
 		response.setSuccess(success);
 		response.setToken(token);

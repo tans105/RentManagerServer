@@ -4,8 +4,12 @@ import java.util.HashMap;
 
 import com.rentalmanager.dao.GenericDao;
 import com.rentalmanager.entity.database.Login;
-
-public class JWTService {
+/**
+ * 
+ * @author tanmay
+ *
+ */
+public class JWTService{
 	private String userId;
 
 	public JWTService(String userId) {
