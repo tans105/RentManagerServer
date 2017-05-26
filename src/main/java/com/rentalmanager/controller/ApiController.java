@@ -18,6 +18,7 @@ public class ApiController {
 	public Boolean login(@PathVariable final String role,
 			final HttpServletRequest request) throws ServletException {
 		final Claims claims = (Claims) request.getAttribute("claims");
+		System.out.println(claims);
 		return claims.get("role").toString().equals(role);
 	}
 }

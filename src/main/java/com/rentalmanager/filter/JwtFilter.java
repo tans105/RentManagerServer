@@ -1,5 +1,9 @@
 package com.rentalmanager.filter;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
+
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -10,35 +14,37 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.filter.GenericFilterBean;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureException;
+import com.rentalmanager.constants.Constants;
+import com.rentalmanager.service.JWTService;
 
 public class JwtFilter extends GenericFilterBean {
 
-    @Override
-    public void doFilter(final ServletRequest req,
-                         final ServletResponse res,
-                         final FilterChain chain) throws IOException, ServletException {
-        final HttpServletRequest request = (HttpServletRequest) req;
+	@Override
+	public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain) throws IOException, ServletException {
+		final HttpServletRequest request = (HttpServletRequest) req;
 
-        final String authHeader = request.getHeader("Authorization");
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new ServletException("Missing or invalid Authorization header.");
-        }
+		final String authHeader = request.getHeader("Authorization");
+		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+			throw new ServletException("Missing or invalid Authorization header.");
+		}
 
-        final String token = authHeader.substring(7); // The part after "Bearer "
+		final String token = authHeader.substring(7); // The part after "Bearer "
 
-        try {
-            final Claims claims = Jwts.parser().setSigningKey("secretkey")
-                .parseClaimsJws(token).getBody();
-            request.setAttribute("claims", claims);
-        }
-        catch (final SignatureException e) {
-            throw new ServletException("Invalid token.");
-        }
+		try {
+			final Claims claims = Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(token).getBody();
+			if (null == claims.get(Constants.USER_ID)) {
+				throw new ServletException("Invalid token");
+			}
+			JWTService service = new JWTService(claims.get(Constants.USER_ID).toString());
+			if (!service.verifyJWT(token)) {
+				throw new ServletException("token expired, login again!");
+			}
+			request.setAttribute("claims", claims);
+		} catch (final SignatureException e) {
+			throw new ServletException("Invalid token.");
+		}
 
-        chain.doFilter(req, res);
-    }
+		chain.doFilter(req, res);
+	}
 
 }
