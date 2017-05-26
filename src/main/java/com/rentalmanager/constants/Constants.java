@@ -27,4 +27,15 @@ public static final String ROLE_TENANT="tenant";
  */
 public static final String[] MODULE_FIELDS=new String[]{"module_name","module_link"};
 
+/*
+ * Claims 
+ */
+
+public static final String FIRST_NAME="firstName";
+public static final String MIDDLE_NAME="middleName";
+public static final String LAST_NAME="lastName";
+public static final String ROLE="role";
+public static final String HOSTEL_ID="hostelId";
+public static final String HOSTEL_NAME="hostelName";
+public static final String USER_ID="userId";
 }

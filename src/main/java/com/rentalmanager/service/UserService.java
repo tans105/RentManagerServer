@@ -14,6 +14,7 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 import com.rentalmanager.constants.Constants;
+import com.rentalmanager.dao.GenericDao;
 import com.rentalmanager.dao.UserDao;
 import com.rentalmanager.entity.Module;
 import com.rentalmanager.entity.database.HostelMst;
@@ -73,5 +74,9 @@ public class UserService {
 
 	public HostelMst getHostelDetails(String hostelId) {
 		return dao.getHostelDetails(hostelId);
+	}
+
+	public void updateLoginDetails(Login userProfile) {
+		new GenericDao().saveOrUpdateEntity(userProfile);
 	}
 }

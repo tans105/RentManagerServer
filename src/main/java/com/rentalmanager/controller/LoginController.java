@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.base.Strings;
 import com.rentalmanager.constants.Constants;
+import com.rentalmanager.dao.GenericDao;
 import com.rentalmanager.entity.LoginResponseDTO;
 import com.rentalmanager.entity.UserLogin;
 import com.rentalmanager.entity.database.HostelMst;
@@ -37,7 +37,6 @@ public class LoginController {
 	@RequestMapping(value = "authenticate", method = RequestMethod.POST)
 	public LoginResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
 		UserService service = new UserService();
-		//		Users userProfile = service.getUser(login.getUserId());
 		logger.debug("LOGGED IN USER " + login.getUserId());
 		Login userProfile = service.getLogin(login.getUserId());
 		LoginResponseDTO response = new LoginResponseDTO();
@@ -57,27 +56,22 @@ public class LoginController {
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
 				RoleMst role = service.getRole(userProfile.getRoleId());
 				PersonalDetails pd = service.getPersonalDetails(userProfile.getUserId());
-				HostelMst hostel=service.getHostelDetails(userProfile.getHostelId());
-				if(hostel==null){
+				HostelMst hostel = service.getHostelDetails(userProfile.getHostelId());
+				if (hostel == null) {
 					response.setResponseMsg(Constants.HOSTEL_BLOCKED);
 					response.setToken(null);
 					response.setSuccess(Boolean.FALSE);
 					return response;
 				}
-				HashMap<String, Object> claims = new HashMap<String, Object>();
-				claims.put("role", role.getRole());
-				claims.put("firstName", pd.getFirstName());
-				if (Strings.isNullOrEmpty(pd.getMiddleName()))
-					claims.put("middleName", pd.getMiddleName());
-				if (Strings.isNullOrEmpty(pd.getMiddleName()))
-					claims.put("lastName", pd.getLastName());
-				claims.put("hostelName", hostel.getHostelName());
-				claims.put("userId", userProfile.getUserId());
-				claims.put("hostelId", hostel.getHostelId());
+				HashMap<String, Object> claims = assignClaims(role, pd, hostel);
 				response.setResponseMsg(Constants.SUCCESSFUL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
 				response.setModuleList(service.readModuleList(userProfile.getRoleId()));
-				response.setToken(Jwts.builder().setSubject(login.getUserId()).setClaims(claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact());
+				String token=Jwts.builder().setSubject(login.getUserId()).setClaims(claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
+				userProfile.setLastLoginDtm(new Date());
+				userProfile.setToken(token);
+				service.updateLoginDetails(userProfile);
+				response.setToken(token);
 				return response;
 			} else {
 				response.setResponseMsg(Constants.PASSWORD_INCORRECT);
@@ -86,5 +80,17 @@ public class LoginController {
 				return response;
 			}
 		}
+	}
+
+	private HashMap<String, Object> assignClaims(RoleMst role, PersonalDetails pd, HostelMst hostel) {
+		HashMap<String, Object> claims = new HashMap<String, Object>();
+		claims.put(Constants.ROLE, role.getRole());
+		claims.put(Constants.FIRST_NAME, pd.getFirstName());
+		claims.put(Constants.MIDDLE_NAME, pd.getMiddleName());
+		claims.put(Constants.LAST_NAME, pd.getLastName());
+		claims.put(Constants.HOSTEL_NAME, hostel.getHostelName());
+		claims.put(Constants.USER_ID, pd.getUserId());
+		claims.put(Constants.HOSTEL_ID, hostel.getHostelId());
+		return claims;
 	}
 }
