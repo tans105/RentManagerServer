@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.rentalmanager.entity.database.HostelMst;
 import com.rentalmanager.entity.database.Login;
 import com.rentalmanager.entity.database.PersonalDetails;
 import com.rentalmanager.entity.database.RoleMst;
@@ -88,6 +89,13 @@ public class UserDao {
 		filter.put("userId", userId);
 		filter.put("active", Boolean.TRUE);
 		return dao.getEntityByProperty(filter, Login.class);
+	}
+
+	public HostelMst getHostelDetails(String hostelId) {
+		HashMap<String, Object> filter = new HashMap<String, Object>();
+		filter.put("hostelId", hostelId);
+		filter.put("active", Boolean.TRUE);
+		return dao.getEntityByProperty(filter, HostelMst.class);
 	}
 
 }

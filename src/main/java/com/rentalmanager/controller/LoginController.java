@@ -20,6 +20,7 @@ import com.google.common.base.Strings;
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.entity.LoginResponseDTO;
 import com.rentalmanager.entity.UserLogin;
+import com.rentalmanager.entity.database.HostelMst;
 import com.rentalmanager.entity.database.Login;
 import com.rentalmanager.entity.database.PersonalDetails;
 import com.rentalmanager.entity.database.RoleMst;
@@ -56,7 +57,13 @@ public class LoginController {
 			if (passUtil.comparePassword(login.getPassword(), userProfile.getPassword())) {
 				RoleMst role = service.getRole(userProfile.getRoleId());
 				PersonalDetails pd = service.getPersonalDetails(userProfile.getUserId());
-				
+				HostelMst hostel=service.getHostelDetails(userProfile.getHostelId());
+				if(hostel==null){
+					response.setResponseMsg(Constants.HOSTEL_BLOCKED);
+					response.setToken(null);
+					response.setSuccess(Boolean.FALSE);
+					return response;
+				}
 				HashMap<String, Object> claims = new HashMap<String, Object>();
 				claims.put("role", role.getRole());
 				claims.put("firstName", pd.getFirstName());
@@ -64,7 +71,9 @@ public class LoginController {
 					claims.put("middleName", pd.getMiddleName());
 				if (Strings.isNullOrEmpty(pd.getMiddleName()))
 					claims.put("lastName", pd.getLastName());
-
+				claims.put("hostelName", hostel.getHostelName());
+				claims.put("userId", userProfile.getUserId());
+				claims.put("hostelId", hostel.getHostelId());
 				response.setResponseMsg(Constants.SUCCESSFUL_AUTHENTICATION);
 				response.setSuccess(Boolean.TRUE);
 				response.setModuleList(service.readModuleList(userProfile.getRoleId()));
