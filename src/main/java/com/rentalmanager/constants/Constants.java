@@ -1,4 +1,5 @@
 package com.rentalmanager.constants;
+
 /**
  * 
  * @author tanmay
@@ -8,9 +9,9 @@ public class Constants {
 	/*
 	 * JWT Filter constants
 	 */
-	
-	public static final String AUTHORIZATION="Authorization";
-	public static final String BEARER_SPACE="Bearer ";
+
+	public static final String AUTHORIZATION = "Authorization";
+	public static final String BEARER_SPACE = "Bearer ";
 
 	/*
 	 * Response Messages
@@ -54,12 +55,20 @@ public class Constants {
 	 */
 
 	public static final String SECRET = "secretkey";
-	
+
 	/*
 	 * JWT Response Messages
 	 */
-	
-	public static final String INVALID_TOKEN="Token Invalid!";
-	public static final String TOKEN_EXPIRED="Token Expired! , login Again";
-	public static final String MISSING_AUTH_HEADER="Missing or invalid Authorization header.";
+
+	public static final String INVALID_TOKEN = "Token Invalid!";
+	public static final String TOKEN_EXPIRED = "Token Expired! , login Again";
+	public static final String MISSING_AUTH_HEADER = "Missing or invalid Authorization header.";
+
+	/*
+	 * Methods
+	 */
+
+	public static final String GET = "GET";
+	public static final String POST = "POST";
+	public static final String OPTIONS = "OPTIONS";
 }

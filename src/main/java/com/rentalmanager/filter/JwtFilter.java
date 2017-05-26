@@ -32,32 +32,36 @@ public class JwtFilter extends GenericFilterBean {
 	public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain) throws IOException, ServletException {
 		final HttpServletRequest request = (HttpServletRequest) req;
 		final HttpServletResponse response = (HttpServletResponse) res;
-		final String authHeader = request.getHeader(Constants.AUTHORIZATION);
-		GenericResponseDTO genResponse = new GenericResponseDTO();
-		Gson gson = new Gson();
-		if (authHeader == null || !authHeader.startsWith(Constants.BEARER_SPACE)) {
-			setHttpResponse(gson, genResponse, response, Constants.MISSING_AUTH_HEADER, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
-			return;
-		}
+		if (Constants.OPTIONS.equals(request.getMethod())) {
+			chain.doFilter(req, res);
+		} else {
+			final String authHeader = request.getHeader(Constants.AUTHORIZATION);
+			GenericResponseDTO genResponse = new GenericResponseDTO();
+			Gson gson = new Gson();
+			if (authHeader == null || !authHeader.startsWith(Constants.BEARER_SPACE)) {
+				setHttpResponse(gson, genResponse, response, Constants.MISSING_AUTH_HEADER, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
+				return;
+			}
 
-		final String token = authHeader.substring(7);
+			final String token = authHeader.substring(7);
 
-		try {
-			final Claims claims = Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(token).getBody();
-			if (null == claims.get(Constants.USER_ID)) {
+			try {
+				final Claims claims = Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(token).getBody();
+				if (null == claims.get(Constants.USER_ID)) {
+					setHttpResponse(gson, genResponse, response, Constants.INVALID_TOKEN, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
+					return;
+				}
+				JWTService service = new JWTService(claims.get(Constants.USER_ID).toString());
+				if (!service.verifyJWT(token)) {
+					setHttpResponse(gson, genResponse, response, Constants.TOKEN_EXPIRED, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
+					return;
+				}
+				request.setAttribute("claims", claims);
+				chain.doFilter(req, res);
+			} catch (final SignatureException e) {
 				setHttpResponse(gson, genResponse, response, Constants.INVALID_TOKEN, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
 				return;
 			}
-			JWTService service = new JWTService(claims.get(Constants.USER_ID).toString());
-			if (!service.verifyJWT(token)) {
-				setHttpResponse(gson, genResponse, response, Constants.TOKEN_EXPIRED, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
-				return;
-			}
-			request.setAttribute("claims", claims);
-			chain.doFilter(req, res);
-		} catch (final SignatureException e) {
-			setHttpResponse(gson, genResponse, response, Constants.INVALID_TOKEN, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
-			return;
 		}
 
 	}
