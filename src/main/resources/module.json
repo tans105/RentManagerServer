@@ -30,7 +30,7 @@
 	[
 		{
 			"moduleName": "Update Profile",
-			"moduleLink": "ProfileManagement"
+			"moduleLink": "profileManagement"
 		}
 	]
 }
