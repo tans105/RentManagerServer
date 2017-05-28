@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.entity.database.PersonalDetails;
-import com.rentalmanager.service.UserService;
+import com.rentalmanager.entity.dto.PersonalDetailsResponseDTO;
+import com.rentalmanager.service.LoginService;
+import com.rentalmanager.service.ProfileManagementService;
 
 /**
  * 
@@ -24,14 +26,17 @@ import com.rentalmanager.service.UserService;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-	private static Logger logger = LoggerFactory.getLogger(ApiController.class);
+	//	private static Logger logger = LoggerFactory.getLogger(ApiController.class);
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
-	public PersonalDetails fetchProfileDetails(final HttpServletRequest request) throws ServletException {
+	public PersonalDetailsResponseDTO fetchProfileDetails(final HttpServletRequest request) throws ServletException {
 		final Claims claims = (Claims) request.getAttribute("claims");
-		logger.debug("Profile Details for " + claims.get(Constants.USER_ID));
-		return new UserService().getPersonalDetails(claims.get(Constants.USER_ID).toString());
-
+		ProfileManagementService service = new ProfileManagementService(claims.get(Constants.USER_ID).toString());
+		PersonalDetailsResponseDTO response = new PersonalDetailsResponseDTO();
+		response.setFormSchema(service.getFormSchema(Constants.PERSONAL_DETAILS, Constants.PERSONAL_DETAILS_SCHEMA_PATH));
+		response.setPersonalDetails(service.getPersonalDetails());
+		response.setSuccess(Boolean.TRUE);
+		return response;
 	}
 }

@@ -26,6 +26,7 @@ public class Constants {
 	 */
 	public static final String HIBERNATE_CONFIG_PATH = "com/rentalmanager/hibernate/Hibernate.cfg.xml";
 	public static final String MODULE_JSON_PATH = "module.json";
+	public static final String PERSONAL_DETAILS_SCHEMA_PATH="personal_details_schema.json";
 
 	/*
 	 * Roles
@@ -46,6 +47,7 @@ public class Constants {
 	public static final String MIDDLE_NAME = "middleName";
 	public static final String LAST_NAME = "lastName";
 	public static final String ROLE = "role";
+	public static final String ROLE_ID = "roleId";
 	public static final String HOSTEL_ID = "hostelId";
 	public static final String HOSTEL_NAME = "hostelName";
 	public static final String USER_ID = "userId";
@@ -71,4 +73,12 @@ public class Constants {
 	public static final String GET = "GET";
 	public static final String POST = "POST";
 	public static final String OPTIONS = "OPTIONS";
+	
+	/*
+	 * Form Schema Entity
+	 */
+	
+	public static final String PERSONAL_DETAILS="personalDetails";
+	
+	
 }

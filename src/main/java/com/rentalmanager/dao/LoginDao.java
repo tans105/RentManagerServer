@@ -16,16 +16,17 @@ import com.rentalmanager.entity.database.RoleMst;
 import com.rentalmanager.entity.database.Users;
 import com.rentalmanager.utils.DbUtil;
 import com.rentalmanager.utils.HibernateUtils;
+
 /**
  * 
  * @author tanmay
  *
  */
-public class UserDao {
+public class LoginDao {
 	private GenericDao dao;
 	private static final String FIRST = "0000000000";
 
-	public UserDao() {
+	public LoginDao() {
 		dao = new GenericDao();
 	}
 
@@ -34,12 +35,6 @@ public class UserDao {
 		filter.put("email", email);
 		filter.put("active", Boolean.TRUE);
 		return dao.getEntityByProperty(filter, Users.class);
-	}
-
-	public PersonalDetails getPersonalDetails(String userId) {
-		HashMap<String, Object> filter = new HashMap<String, Object>();
-		filter.put("userId", userId);
-		return dao.getEntityByProperty(filter, PersonalDetails.class);
 	}
 
 	public RoleMst getRole(Integer roleId) {
@@ -100,6 +95,12 @@ public class UserDao {
 		filter.put("hostelId", hostelId);
 		filter.put("active", Boolean.TRUE);
 		return dao.getEntityByProperty(filter, HostelMst.class);
+	}
+
+	public PersonalDetails getPersonalDetails(String userId) {
+		HashMap<String, Object> filter = new HashMap<String, Object>();
+		filter.put("userId", userId);
+		return dao.getEntityByProperty(filter, PersonalDetails.class);
 	}
 
 }

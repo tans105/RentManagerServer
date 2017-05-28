@@ -1,6 +1,8 @@
-package com.rentalmanager.entity;
+package com.rentalmanager.entity.dto;
 
 import java.util.List;
+
+import com.rentalmanager.entity.Module;
 /**
  * 
  * @author tanmay

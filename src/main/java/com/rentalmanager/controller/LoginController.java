@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rentalmanager.constants.Constants;
-import com.rentalmanager.entity.GenericResponseDTO;
 import com.rentalmanager.entity.Module;
 import com.rentalmanager.entity.UserLogin;
 import com.rentalmanager.entity.database.HostelMst;
 import com.rentalmanager.entity.database.Login;
 import com.rentalmanager.entity.database.PersonalDetails;
 import com.rentalmanager.entity.database.RoleMst;
-import com.rentalmanager.service.UserService;
+import com.rentalmanager.entity.dto.GenericResponseDTO;
+import com.rentalmanager.service.LoginService;
 import com.rentalmanager.utils.PasswordUtil;
 /**
  * 
@@ -41,7 +41,7 @@ public class LoginController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "authenticate", method = RequestMethod.POST)
 	public GenericResponseDTO login(@RequestBody final UserLogin login) throws ServletException {
-		UserService service = new UserService();
+		LoginService service = new LoginService();
 		logger.debug("LOGGED IN USER " + login.getUserId());
 		Login userProfile = service.getLogin(login.getUserId());
 		GenericResponseDTO response = new GenericResponseDTO();
@@ -81,6 +81,7 @@ public class LoginController {
 
 	private HashMap<String, Object> assignClaims(RoleMst role, PersonalDetails pd, HostelMst hostel) {
 		HashMap<String, Object> claims = new HashMap<String, Object>();
+		claims.put(Constants.ROLE_ID, role.getRoleId());
 		claims.put(Constants.ROLE, role.getRole());
 		claims.put(Constants.FIRST_NAME, pd.getFirstName());
 		claims.put(Constants.MIDDLE_NAME, pd.getMiddleName());

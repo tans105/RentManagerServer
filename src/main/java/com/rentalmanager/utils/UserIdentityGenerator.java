@@ -6,7 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
-import com.rentalmanager.dao.UserDao;
+import com.rentalmanager.dao.LoginDao;
 import com.rentalmanager.entity.database.Login;
 /**
  * 
@@ -19,7 +19,7 @@ public class UserIdentityGenerator implements IdentifierGenerator {
 	@Override
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 		Login login = (Login) object;
-		UserDao dao = new UserDao();
+		LoginDao dao = new LoginDao();
 		String maxUserId = dao.getMaxUserId(login.getRoleId());
 		Serializable result = null;
 		result = incrementUserId(maxUserId);

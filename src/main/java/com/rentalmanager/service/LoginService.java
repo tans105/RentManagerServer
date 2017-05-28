@@ -15,7 +15,7 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.Gson;
 import com.rentalmanager.constants.Constants;
 import com.rentalmanager.dao.GenericDao;
-import com.rentalmanager.dao.UserDao;
+import com.rentalmanager.dao.LoginDao;
 import com.rentalmanager.entity.Module;
 import com.rentalmanager.entity.database.HostelMst;
 import com.rentalmanager.entity.database.Login;
@@ -28,11 +28,11 @@ import com.rentalmanager.tester.JsonFileRead;
  * @author tanmay
  *
  */
-public class UserService {
-	private UserDao dao;
+public class LoginService {
+	private LoginDao dao;
 
-	public UserService() {
-		dao = new UserDao();
+	public LoginService() {
+		dao = new LoginDao();
 	}
 
 	public Users getUser(String email) {

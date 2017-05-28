@@ -18,7 +18,7 @@ import org.springframework.web.filter.GenericFilterBean;
 
 import com.google.gson.Gson;
 import com.rentalmanager.constants.Constants;
-import com.rentalmanager.entity.GenericResponseDTO;
+import com.rentalmanager.entity.dto.GenericResponseDTO;
 import com.rentalmanager.service.JWTService;
 
 /**
