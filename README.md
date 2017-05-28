@@ -22,9 +22,14 @@ The heavy lifting for JWT signing is done by the more than excellent [Java JWT](
 You can either use postman or you can checkout my other repository [RENT MANAGER CLIENT](https://github.com/tans105/RentManagerClient.git) which is angular based project. 
 You can use below credentials to see it working
 
-email : tanmayawasthi105@gmail.com
+userId : ADM0000000001
 password : password
 
 ## Running
 
-It is a standard Maven project and can be imported into your favorite IDE. You run the example by starting the WebApplication class (it has a main) and navigating to http://localhost:8080/. 
+It is a standard Maven project and can be imported into your favorite IDE. You run the example by starting the WebApplication class (it has a main) and navigating to http://localhost:8080/.
+
+#Pre-requisite
+
+Install postgres -> goto /resources/RentalManager.sql -> All the required tables and row creations are added there
+ 
