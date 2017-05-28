@@ -19,6 +19,10 @@ public class ProfileManagementService extends GenericService{
 	public PersonalDetails getPersonalDetails() {
 		return dao.getPersonalDetails(userId);
 	}
+
+	public boolean saveOrUpdateProfile(PersonalDetails pd) {
+		return dao.saveOrUpdateProfile(pd);
+	}
 	
 	
 }

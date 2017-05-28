@@ -13,6 +13,7 @@ public class PersonalDetailsResponseDTO {
 	private List<GenericFormEntity> formSchema;
 	private PersonalDetails personalDetails;
 	private Boolean success;
+	private String responseMsg;
 
 	public List<GenericFormEntity> getFormSchema() {
 		return formSchema;
@@ -36,6 +37,14 @@ public class PersonalDetailsResponseDTO {
 
 	public void setSuccess(Boolean success) {
 		this.success = success;
+	}
+
+	public String getResponseMsg() {
+		return responseMsg;
+	}
+
+	public void setResponseMsg(String responseMsg) {
+		this.responseMsg = responseMsg;
 	}
 
 }

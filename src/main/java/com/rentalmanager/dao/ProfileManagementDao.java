@@ -20,4 +20,8 @@ public class ProfileManagementDao {
 		filter.put("userId", userId);
 		return dao.getEntityByProperty(filter, PersonalDetails.class);
 	}
+
+	public boolean saveOrUpdateProfile(PersonalDetails pd) {
+		return dao.saveOrUpdateEntity(pd);
+	}
 }
