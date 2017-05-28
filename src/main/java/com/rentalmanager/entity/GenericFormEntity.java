@@ -10,7 +10,8 @@ public class GenericFormEntity {
 	private String fieldType;
 	private Integer[] editBy;
 	private Integer isMandatory;
-
+	private String placeholder;
+	
 	public String getFieldName() {
 		return fieldName;
 	}
@@ -49,5 +50,13 @@ public class GenericFormEntity {
 
 	public void setIsMandatory(Integer isMandatory) {
 		this.isMandatory = isMandatory;
+	}
+
+	public String getPlaceholder() {
+		return placeholder;
+	}
+
+	public void setPlaceholder(String placeholder) {
+		this.placeholder = placeholder;
 	}
 }

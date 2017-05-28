@@ -5,6 +5,7 @@
 			"fieldId": "firstName",
 			"fieldName": "First Name",
 			"fieldType": "text",
+			"placeholder":"Enter First Name",
 			"editBy": 
 			[
 				1,
@@ -18,6 +19,7 @@
 			"fieldId": "middleName",
 			"fieldName": "Middle Name",
 			"fieldType": "text",
+			"placeholder":"Enter Middle Name",
 			"editBy": 
 			[
 				1,
@@ -31,6 +33,7 @@
 			"fieldId": "lastName",
 			"fieldName": "Last Name",
 			"fieldType": "text",
+			"placeholder":"Enter Last Name",
 			"editBy": 
 			[
 				1,
