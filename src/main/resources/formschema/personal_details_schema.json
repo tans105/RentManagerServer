@@ -55,6 +55,32 @@
 			],
 
 			"isMandatory": 1
+		},
+		{
+			"fieldId": "city",
+			"fieldName": "City",
+			"fieldType": "text",
+			"placeholder": "Native City",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 0
+		},
+		{
+			"fieldId": "state",
+			"fieldName": "State",
+			"fieldType": "text",
+			"placeholder": "Native State",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 0
 		}
 	]
 }
