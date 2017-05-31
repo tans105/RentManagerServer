@@ -1,0 +1,86 @@
+{
+	"personalDetails": 
+	[
+		{
+			"fieldId": "firstName",
+			"fieldName": "First Name",
+			"fieldType": "text",
+			"placeholder": "Enter First Name",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 1
+		},
+
+		{
+			"fieldId": "middleName",
+			"fieldName": "Middle Name",
+			"fieldType": "text",
+			"placeholder": "Enter Middle Name",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 0
+		},
+
+		{
+			"fieldId": "lastName",
+			"fieldName": "Last Name",
+			"fieldType": "text",
+			"placeholder": "Enter Last Name",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 0
+		},
+
+		{
+			"fieldId": "dob",
+			"fieldName": "Date of Birth",
+			"fieldType": "date",
+			"placeholder": "YYYY-MM-DD",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 1
+		},
+		{
+			"fieldId": "city",
+			"fieldName": "City",
+			"fieldType": "text",
+			"placeholder": "Native City",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 0
+		},
+		{
+			"fieldId": "state",
+			"fieldName": "State",
+			"fieldType": "text",
+			"placeholder": "Native State",
+			"editBy": 
+			[
+				1,
+				2
+			],
+
+			"isMandatory": 0
+		}
+	]
+}

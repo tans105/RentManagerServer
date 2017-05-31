@@ -14,6 +14,7 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 import com.rentmanager.entity.GenericFormEntity;
+import com.rentmanager.entity.GenericFormEntityBundle;
 import com.rentmanager.tester.JsonFileRead;
 
 /**
@@ -21,9 +22,11 @@ import com.rentmanager.tester.JsonFileRead;
  * @created : 28-May-2017
  */
 public class GenericService {
+	private static final String STACK = "stack";
+	private static final String SIZE = "size";
 
-	public List<GenericFormEntity> getFormSchema(String moduleName, String jsonPath) {
-		List<GenericFormEntity> list = new LinkedList<GenericFormEntity>();
+	public List<GenericFormEntityBundle> getGenericFormSchema(String moduleName, String jsonPath) {
+		List<GenericFormEntityBundle> list = new LinkedList<GenericFormEntityBundle>();
 		ClassLoader classLoader = new JsonFileRead().getClass().getClassLoader();
 		File file = new File(classLoader.getResource(jsonPath).getFile());
 		JSONParser parser = new JSONParser();
@@ -31,10 +34,18 @@ public class GenericService {
 		try {
 			obj = parser.parse(new FileReader(file));
 			JSONObject jsonObject = (JSONObject) obj;
-			JSONArray roleArray = (JSONArray) jsonObject.get(moduleName);
-			for (int i = 0; i < roleArray.size(); i++) {
-				GenericFormEntity entity=new Gson().fromJson(roleArray.get(i).toString(), GenericFormEntity.class);
-				list.add(entity);
+			JSONObject jsonObject1 = (JSONObject) jsonObject.get(moduleName);
+			Gson gson = new Gson();
+			for (int i = 0; i < Integer.parseInt(jsonObject1.get(SIZE).toString()); i++) {
+				JSONArray arr = (JSONArray) jsonObject1.get(STACK + i);
+				List<GenericFormEntity> entityList = new LinkedList<GenericFormEntity>();
+				for (int j = 0; j < arr.size(); j++) {
+					entityList.add(gson.fromJson(arr.get(j).toString(), GenericFormEntity.class));
+				}
+				GenericFormEntityBundle entityRevamped = new GenericFormEntityBundle();
+				entityRevamped.setSize(arr.size());
+				entityRevamped.setStack(entityList);
+				list.add(entityRevamped);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

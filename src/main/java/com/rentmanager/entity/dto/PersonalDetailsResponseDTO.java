@@ -2,7 +2,7 @@ package com.rentmanager.entity.dto;
 
 import java.util.List;
 
-import com.rentmanager.entity.GenericFormEntity;
+import com.rentmanager.entity.GenericFormEntityBundle;
 import com.rentmanager.entity.database.PersonalDetails;
 
 /**
@@ -10,16 +10,16 @@ import com.rentmanager.entity.database.PersonalDetails;
  * @created : 28-May-2017
  */
 public class PersonalDetailsResponseDTO {
-	private List<GenericFormEntity> formSchema;
+	private List<GenericFormEntityBundle> formSchema;
 	private PersonalDetails personalDetails;
 	private Boolean success;
 	private String responseMsg;
 
-	public List<GenericFormEntity> getFormSchema() {
+	public List<GenericFormEntityBundle> getFormSchema() {
 		return formSchema;
 	}
 
-	public void setFormSchema(List<GenericFormEntity> formSchema) {
+	public void setFormSchema(List<GenericFormEntityBundle> formSchema) {
 		this.formSchema = formSchema;
 	}
 

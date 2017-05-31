@@ -34,7 +34,7 @@ public class ProfileManagementController {
 		final Claims claims = (Claims) request.getAttribute("claims");
 		ProfileManagementService service = new ProfileManagementService(claims.get(Constants.USER_ID).toString());
 		PersonalDetailsResponseDTO response = new PersonalDetailsResponseDTO();
-		response.setFormSchema(service.getFormSchema(Constants.PERSONAL_DETAILS, Constants.PERSONAL_DETAILS_SCHEMA_PATH));
+		response.setFormSchema(service.getGenericFormSchema(Constants.PERSONAL_DETAILS,Constants.PERSONAL_DETAILS_SCHEMA_PATH));
 		response.setPersonalDetails(service.getPersonalDetails());
 		response.setSuccess(Boolean.TRUE);
 		return response;
