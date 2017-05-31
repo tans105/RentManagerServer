@@ -26,7 +26,7 @@ import com.rentmanager.service.ProfileManagementService;
 @RestController
 @RequestMapping("/api/profile")
 public class ProfileManagementController {
-	//	private static Logger logger = LoggerFactory.getLogger(ApiController.class);
+	private static Logger logger = LoggerFactory.getLogger(ProfileManagementController.class);
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "fetchProfile", method = RequestMethod.GET)
