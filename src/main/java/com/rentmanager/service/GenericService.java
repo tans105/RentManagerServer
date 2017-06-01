@@ -33,19 +33,19 @@ public class GenericService {
 		Object obj;
 		try {
 			obj = parser.parse(new FileReader(file));
-			JSONObject jsonObject = (JSONObject) obj;
-			JSONObject jsonObject1 = (JSONObject) jsonObject.get(moduleName);
+			JSONObject json = (JSONObject) obj;
+			JSONObject moduleJson = (JSONObject) json.get(moduleName);
 			Gson gson = new Gson();
-			for (int i = 0; i < Integer.parseInt(jsonObject1.get(SIZE).toString()); i++) {
-				JSONArray arr = (JSONArray) jsonObject1.get(STACK + i);
+			for (int i = 0; i < Integer.parseInt(moduleJson.get(SIZE).toString()); i++) {
+				JSONArray arr = (JSONArray) moduleJson.get(STACK + i);
 				List<GenericFormEntity> entityList = new LinkedList<GenericFormEntity>();
 				for (int j = 0; j < arr.size(); j++) {
 					entityList.add(gson.fromJson(arr.get(j).toString(), GenericFormEntity.class));
 				}
-				GenericFormEntityBundle entityRevamped = new GenericFormEntityBundle();
-				entityRevamped.setSize(arr.size());
-				entityRevamped.setStack(entityList);
-				list.add(entityRevamped);
+				GenericFormEntityBundle bundle = new GenericFormEntityBundle();
+				bundle.setSize(arr.size());
+				bundle.setStack(entityList);
+				list.add(bundle);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

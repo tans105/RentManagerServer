@@ -86,8 +86,8 @@
 			{
 				"fieldId": "state",
 				"fieldName": "State",
-				"fieldType": "text",
-				"placeholder": "Native State",
+				"fieldType": "select",
+				"placeholder": "Select Native State",
 				"editBy": 
 				[
 					1,
