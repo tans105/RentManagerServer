@@ -14,6 +14,7 @@ active boolean default true,
 primary key (user_id)
 );
 
+insert into login values ('ADM0000000001','SSHHYDTEL0001','5f4dcc3b5aa765d61d8327deb882cf99','','',1,true);
 
 create table role_mst(
 role_id integer not null,
@@ -43,10 +44,14 @@ create table personal_details(
 user_id text not null,
 first_name text not null,
 middle_name text,
-last_name text
+last_name text,
+dob date,
+city character varying(30),
+state character varying(30),
+email character varying(100),
+mobile character varying(20),
+alt_mobile character varying(20),
+primary key(user_id)
 );
 
 insert into personal_details values ('ADM0000000001','Tanmay','','Awasthi');
-insert into personal_details values ('ADM0000000002','Manisha','','Ojha');
---insert into users values('tanmayawasthi105@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99',1,true);
---insert into users values('mojha2701@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99',2,true);
