@@ -10,6 +10,7 @@ import com.rentmanager.entity.database.PersonalDetails;
  * @created : 28-May-2017
  */
 public class PersonalDetailsResponseDTO {
+	private List numericFields;
 	private List<GenericFormEntityBundle> formSchema;
 	private PersonalDetails personalDetails;
 	private Boolean success;

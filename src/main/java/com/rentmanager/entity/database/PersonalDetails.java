@@ -15,6 +15,25 @@ public class PersonalDetails {
 	private Date dob;
 	private String city;
 	private String state;
+	private String email;
+	private String mobile;
+	private String altMobile;
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getAltMobile() {
+		return altMobile;
+	}
+
+	public void setAltMobile(String altMobile) {
+		this.altMobile = altMobile;
+	}
 
 	public String getCity() {
 		return city;
@@ -70,6 +89,14 @@ public class PersonalDetails {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

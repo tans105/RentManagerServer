@@ -1,7 +1,7 @@
 {
 	"personalDetails": 
 	{
-		"size": 4,
+		"size": 6,
 		"stack0": 
 		[
 			{
@@ -88,6 +88,54 @@
 				"fieldName": "State",
 				"fieldType": "select",
 				"placeholder": "Select Native State",
+				"editBy": 
+				[
+					1,
+					2
+				],
+
+				"isMandatory": 0
+			}
+		],
+
+		"stack4": 
+		[
+			{
+				"fieldId": "email",
+				"fieldName": "E-mail",
+				"fieldType": "email",
+				"placeholder": "Email Address",
+				"editBy": 
+				[
+					1,
+					2
+				],
+
+				"isMandatory": 0
+			}
+		],
+
+		"stack5": 
+		[
+			{
+				"fieldId": "mobile",
+				"fieldName": "Mobile Number",
+				"fieldType": "number",
+				"placeholder": "10 digit Mobile number",
+				"editBy": 
+				[
+					1,
+					2
+				],
+
+				"isMandatory": 1
+			},
+
+			{
+				"fieldId": "altMobile",
+				"fieldName": "Alternate Mobile Number",
+				"fieldType": "number",
+				"placeholder": "10 digit Alternate Mobile number",
 				"editBy": 
 				[
 					1,

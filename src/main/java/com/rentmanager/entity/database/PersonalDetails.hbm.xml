@@ -26,5 +26,14 @@
 		<property name="state" type="string">
 			<column name="state" length="30" />
 		</property>
+		<property name="email" type="string">
+			<column name="email" length="100" />
+		</property>
+		<property name="mobile" type="string">
+			<column name="mobile" length="20" />
+		</property>
+		<property name="altMobile" type="string">
+			<column name="alt_mobile" length="20" />
+		</property>
 	</class>
 </hibernate-mapping>
