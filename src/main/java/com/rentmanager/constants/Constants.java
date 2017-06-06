@@ -21,14 +21,16 @@ public class Constants {
 	public static final String SUCCESSFUL_AUTHENTICATION = "Authenticated Successfully";
 	public static final String INACTIVE_USER = "User is not active, Contact Admin";
 	public static final String HOSTEL_BLOCKED = "Sorry! Hostel is Blocked";
+	public static final String UNABLE_TO_CREATE = "Unable to create User";
+	public static final String USER_ADDED_SUCCESSFULLY = "User added Successfully";
 	/*
 	 * Config paths
 	 */
 	public static final String HIBERNATE_CONFIG_PATH = "com/rentmanager/hibernate/Hibernate.cfg.xml";
 	public static final String MODULE_JSON_PATH = "module.json";
-	public static final String PERSONAL_DETAILS_SCHEMA_PATH="formschema/personal_details_schema.json";
-	public static final String NEW_USER_SCHEMA_PATH="formschema/new_user.json";
-	public static final String EDIT_USER_SCHEMA_PATH="formschema/personal_details_schema.json";
+	public static final String PERSONAL_DETAILS_SCHEMA_PATH = "formschema/personal_details_schema.json";
+	public static final String NEW_USER_SCHEMA_PATH = "formschema/new_user.json";
+	public static final String EDIT_USER_SCHEMA_PATH = "formschema/personal_details_schema.json";
 
 	/*
 	 * Roles
@@ -75,13 +77,12 @@ public class Constants {
 	public static final String GET = "GET";
 	public static final String POST = "POST";
 	public static final String OPTIONS = "OPTIONS";
-	
+
 	/*
 	 * Form Schema Entity
 	 */
-	
-	public static final String PERSONAL_DETAILS="personalDetails";
-	public static final String NEW_USER="newUser";
-	
-	
+
+	public static final String PERSONAL_DETAILS = "personalDetails";
+	public static final String NEW_USER = "newUser";
+
 }

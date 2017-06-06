@@ -3,19 +3,22 @@ package com.rentmanager.entity.dto;
 import java.util.List;
 
 import com.rentmanager.entity.GenericFormEntityBundle;
+import com.rentmanager.entity.SelectListData;
 import com.rentmanager.entity.database.PersonalDetails;
 
 /**
  * @author : tanmay
  * @created : 06-Jun-2017
  */
-public class UserManagementDTO {
+public class UserManagementResponseDTO {
 	private List<GenericFormEntityBundle> formSchema;
 	private PersonalDetails personalDetails;
 	private Boolean success;
 	private String responseMsg;
+	private String userId;
 	private List<String> stateMst;
 	private List<String> idProofMst;
+	private List<SelectListData> roleMst;
 
 	public List<String> getIdProofMst() {
 		return idProofMst;
@@ -63,6 +66,22 @@ public class UserManagementDTO {
 
 	public void setStateMst(List<String> stateMst) {
 		this.stateMst = stateMst;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public List<SelectListData> getRoleMst() {
+		return roleMst;
+	}
+
+	public void setRoleMst(List<SelectListData> roleMst) {
+		this.roleMst = roleMst;
 	}
 
 }

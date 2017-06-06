@@ -1,9 +1,13 @@
 package com.rentmanager.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.rentmanager.dao.GenericDao;
 import com.rentmanager.dao.ProfileManagementDao;
+import com.rentmanager.entity.SelectListData;
 import com.rentmanager.entity.database.PersonalDetails;
+import com.rentmanager.entity.database.RoleMst;
 
 /**
  * @author : tanmay
@@ -32,6 +36,13 @@ public class ProfileManagementService extends GenericService {
 
 	public List<String> getIdproofMst() {
 		return dao.getIdProofMst();
+	}
+
+	public List<SelectListData> getRoleSelectList() {
+		List<String> attributes = new ArrayList<String>();
+		attributes.add("roleId");
+		attributes.add("role");
+		return new GenericDao().getSelectListData(RoleMst.class, attributes, null);
 	}
 
 }
