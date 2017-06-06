@@ -55,3 +55,18 @@ primary key(user_id)
 );
 
 insert into personal_details values ('ADM0000000001','Tanmay','','Awasthi');
+
+
+create table state_mst(
+name text not null
+);
+
+INSERT INTO state_mst (name)
+VALUES ('DAMAN DIU'),('GUJARAT'),('JAMMU AND KASHMIR') ,('MADHYA PRADESH'), ('WEST BENGAL'), ('UTTAR PRADESH'), ('ORISSA'), ('CHHATTISGARH'), ('HIMACHAL PRADESH'), ('DADRA NAGAR HAVELI'), ('CHANDIGARH'), ('JHARKHAND'), ('BIHAR'), ('ASSAM'), ('UTTARANCHAL'), ('GOA'), ('DELHI'), ('RAJASTHAN'), ('PONDICHERRY'), ('PUNJAB'), ('HARYANA'), ('TAMILNADU'), ('KARNATAKA'), ('KERALA'), ('ANDHRA PRADESH'), ('MAHARASHTRA'), ('MEGHALAYA'), ('TELANGANA');
+
+create table idproof_mst(
+name text not null
+);
+
+insert into idproof_mst (name) values
+('Driving License'),('Aadhar Card'),('Pan Card');

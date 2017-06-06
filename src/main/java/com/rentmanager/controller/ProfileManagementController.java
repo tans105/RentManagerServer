@@ -36,6 +36,8 @@ public class ProfileManagementController {
 		PersonalDetailsResponseDTO response = new PersonalDetailsResponseDTO();
 		response.setFormSchema(service.getGenericFormSchema(Constants.PERSONAL_DETAILS,Constants.PERSONAL_DETAILS_SCHEMA_PATH));
 		response.setPersonalDetails(service.getPersonalDetails());
+		response.setStateMst(service.getStateMst());
+		response.setIdProofMst(service.getIdproofMst());
 		response.setSuccess(Boolean.TRUE);
 		return response;
 	}

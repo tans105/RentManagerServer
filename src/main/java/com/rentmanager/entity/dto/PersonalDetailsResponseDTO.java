@@ -10,11 +10,20 @@ import com.rentmanager.entity.database.PersonalDetails;
  * @created : 28-May-2017
  */
 public class PersonalDetailsResponseDTO {
-	private List numericFields;
 	private List<GenericFormEntityBundle> formSchema;
 	private PersonalDetails personalDetails;
 	private Boolean success;
 	private String responseMsg;
+	private List<String> stateMst;
+	private List<String> idProofMst;
+
+	public List<String> getIdProofMst() {
+		return idProofMst;
+	}
+
+	public void setIdProofMst(List<String> idProofMst) {
+		this.idProofMst = idProofMst;
+	}
 
 	public List<GenericFormEntityBundle> getFormSchema() {
 		return formSchema;
@@ -46,6 +55,14 @@ public class PersonalDetailsResponseDTO {
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+
+	public List<String> getStateMst() {
+		return stateMst;
+	}
+
+	public void setStateMst(List<String> stateMst) {
+		this.stateMst = stateMst;
 	}
 
 }
