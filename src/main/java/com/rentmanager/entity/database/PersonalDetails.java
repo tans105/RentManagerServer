@@ -18,6 +18,24 @@ public class PersonalDetails {
 	private String email;
 	private String mobile;
 	private String altMobile;
+	private String idproof;
+	private String idproofValue;
+
+	public String getIdproof() {
+		return idproof;
+	}
+
+	public void setIdproof(String idproof) {
+		this.idproof = idproof;
+	}
+
+	public String getIdproofValue() {
+		return idproofValue;
+	}
+
+	public void setIdproofValue(String idproofValue) {
+		this.idproofValue = idproofValue;
+	}
 
 	public String getMobile() {
 		return mobile;

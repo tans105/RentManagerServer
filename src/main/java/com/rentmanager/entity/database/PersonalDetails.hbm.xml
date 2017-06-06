@@ -35,5 +35,11 @@
 		<property name="altMobile" type="string">
 			<column name="alt_mobile" length="20" />
 		</property>
+		<property name="idproof" type="string">
+			<column name="idproof" length="30" />
+		</property>
+		<property name="idproofValue" type="string">
+			<column name="idproof_value" length="30" />
+		</property>
 	</class>
 </hibernate-mapping>

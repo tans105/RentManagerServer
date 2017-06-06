@@ -51,6 +51,8 @@ state character varying(30),
 email character varying(100),
 mobile character varying(20),
 alt_mobile character varying(20),
+idproof character varying (30),
+idproof_value character varying(30)
 primary key(user_id)
 );
 

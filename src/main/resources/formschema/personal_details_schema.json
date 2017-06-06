@@ -1,7 +1,7 @@
 {
 	"personalDetails": 
 	{
-		"size": 6,
+		"size": 7,
 		"stack0": 
 		[
 			{
@@ -143,6 +143,36 @@
 				],
 
 				"isMandatory": 0
+			}
+		],
+		"stack6": 
+		[
+			{
+				"fieldId": "idproof",
+				"fieldName": "ID proof",
+				"fieldType": "select",
+				"placeholder": "Select Id proof",
+				"editBy": 
+				[
+					1,
+					2
+				],
+
+				"isMandatory": 1
+			},
+
+			{
+				"fieldId": "idproofValue",
+				"fieldName": "Id Proof Number",
+				"fieldType": "text",
+				"placeholder": "Id Proof number",
+				"editBy": 
+				[
+					1,
+					2
+				],
+
+				"isMandatory": 1
 			}
 		]
 	}
