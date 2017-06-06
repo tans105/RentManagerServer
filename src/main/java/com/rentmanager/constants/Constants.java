@@ -27,6 +27,7 @@ public class Constants {
 	public static final String HIBERNATE_CONFIG_PATH = "com/rentmanager/hibernate/Hibernate.cfg.xml";
 	public static final String MODULE_JSON_PATH = "module.json";
 	public static final String PERSONAL_DETAILS_SCHEMA_PATH="formschema/personal_details_schema.json";
+	public static final String NEW_USER_SCHEMA_PATH="formschema/new_user.json";
 	public static final String EDIT_USER_SCHEMA_PATH="formschema/personal_details_schema.json";
 
 	/*
@@ -80,6 +81,7 @@ public class Constants {
 	 */
 	
 	public static final String PERSONAL_DETAILS="personalDetails";
+	public static final String NEW_USER="newUser";
 	
 	
 }
