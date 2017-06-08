@@ -23,6 +23,8 @@ public class Constants {
 	public static final String HOSTEL_BLOCKED = "Sorry! Hostel is Blocked";
 	public static final String UNABLE_TO_CREATE = "Unable to create User";
 	public static final String USER_ADDED_SUCCESSFULLY = "User added Successfully";
+	public static final String MOBILE_NUMBER_EXISTS = "Mobile number already present";
+	public static final String EMAIL_REGISTERED = "Email ID already registered";
 	/*
 	 * Config paths
 	 */
@@ -61,6 +63,7 @@ public class Constants {
 	 */
 
 	public static final String SECRET = "secretkey";
+	public static final String DEFAULT_PASSWORD = "5f4dcc3b5aa765d61d8327deb882cf99";
 
 	/*
 	 * JWT Response Messages
@@ -71,7 +74,7 @@ public class Constants {
 	public static final String MISSING_AUTH_HEADER = "Missing or invalid Authorization header.";
 
 	/*
-	 * Methods
+	 * Request Methods
 	 */
 
 	public static final String GET = "GET";

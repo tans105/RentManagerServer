@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.rentmanager.dao.GenericDao;
 import com.rentmanager.dao.ProfileManagementDao;
+import com.rentmanager.dao.UserManagementDao;
 import com.rentmanager.entity.SelectListData;
 import com.rentmanager.entity.database.PersonalDetails;
 import com.rentmanager.entity.database.RoleMst;
@@ -27,6 +28,8 @@ public class ProfileManagementService extends GenericService {
 	}
 
 	public boolean saveOrUpdateProfile(PersonalDetails pd) {
+		//UserManagementDao userDao=new UserManagementDao();
+		//userDao.validateNewUser(pd);
 		return dao.saveOrUpdateProfile(pd);
 	}
 

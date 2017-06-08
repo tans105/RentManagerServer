@@ -2,6 +2,8 @@ package com.rentmanager.controller;
 
 import io.jsonwebtoken.Claims;
 
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +31,7 @@ import com.rentmanager.service.UserManagementService;
 @RequestMapping("/api/user")
 public class UserManagementController {
 	private static Logger logger = LoggerFactory.getLogger(UserManagementController.class);
+	private static final String RESPONSE_MSG = "responseMsg";
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "getNewUserForm", method = RequestMethod.GET)
@@ -51,14 +54,14 @@ public class UserManagementController {
 		final Claims claims = (Claims) request.getAttribute("claims");
 		UserManagementResponseDTO response = new UserManagementResponseDTO();
 		UserManagementService service = new UserManagementService(claims.get(Constants.USER_ID).toString());
-		String userId = service.authorizeAndStoreNewUser(user.getRoleId(), claims.get(Constants.HOSTEL_ID).toString(), user.getPersonalDetails());
-		if (!Strings.isNullOrEmpty(userId)) {
+		Map<String, String> validationResponse = service.authorizeAndStoreNewUser(user.getRoleId(), claims.get(Constants.HOSTEL_ID).toString(), user.getPersonalDetails());
+		if (!Strings.isNullOrEmpty(validationResponse.get(Constants.USER_ID))) {
 			response.setSuccess(Boolean.TRUE);
-			response.setUserId(userId);
-			response.setResponseMsg(Constants.USER_ADDED_SUCCESSFULLY);
+			response.setUserId(validationResponse.get(Constants.USER_ID));
+			response.setResponseMsg(validationResponse.get(RESPONSE_MSG));
 		} else {
 			response.setSuccess(Boolean.FALSE);
-			response.setResponseMsg(Constants.UNABLE_TO_CREATE);
+			response.setResponseMsg(validationResponse.get(RESPONSE_MSG));
 		}
 
 		return response;
