@@ -87,5 +87,27 @@ public class Constants {
 
 	public static final String PERSONAL_DETAILS = "personalDetails";
 	public static final String NEW_USER = "newUser";
+	
+	/*
+	 * MAP KEYS
+	 */
+	public static final String ATTRIBUTE="attribute";
+	public static final String OPERATOR="operator";
+	public static final String VALUE="value"; 
+	
+	/*
+	 * Operators
+	 */
+	
+	public static final String OPERATOR_EQUALS= " = " ;
+	public static final String OPERATOR_LESS_THAN=" < ";
+	public static final String OPERATOR_LESS_THAN_OR_EQUALS=" <= ";
+	public static final String OPERATOR_GREATER_THAN=" > ";
+	public static final String OPERATOR_GREATER_THAN_OR_EQUALS=" >= ";
+	public static final String OPERATOR_STARTS_WITH=" STARTS ";
+	public static final String OPERATOR_CONTAINS=" CONTAINS ";
+	public static final String OPERATOR_IN=" IN ";
+	public static final String OPERATOR_ALLOCATED= "IS";
+	public static final String OPERATOR_NOT_EQUALS="<>";
 
 }

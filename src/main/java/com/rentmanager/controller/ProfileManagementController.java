@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.base.Strings;
 import com.rentmanager.constants.Constants;
 import com.rentmanager.entity.database.PersonalDetails;
 import com.rentmanager.entity.dto.PersonalDetailsResponseDTO;
@@ -34,7 +35,7 @@ public class ProfileManagementController {
 		final Claims claims = (Claims) request.getAttribute("claims");
 		ProfileManagementService service = new ProfileManagementService(claims.get(Constants.USER_ID).toString());
 		PersonalDetailsResponseDTO response = new PersonalDetailsResponseDTO();
-		response.setFormSchema(service.getGenericFormSchema(Constants.PERSONAL_DETAILS,Constants.PERSONAL_DETAILS_SCHEMA_PATH));
+		response.setFormSchema(service.getGenericFormSchema(Constants.PERSONAL_DETAILS, Constants.PERSONAL_DETAILS_SCHEMA_PATH));
 		response.setPersonalDetails(service.getPersonalDetails());
 		response.setStateMst(service.getStateMst());
 		response.setIdProofMst(service.getIdproofMst());
@@ -48,9 +49,13 @@ public class ProfileManagementController {
 		final Claims claims = (Claims) request.getAttribute("claims");
 		ProfileManagementService service = new ProfileManagementService(claims.get(Constants.USER_ID).toString());
 		PersonalDetailsResponseDTO response = new PersonalDetailsResponseDTO();
-		if (service.saveOrUpdateProfile(pd)) {
+		String responseMsg = service.saveOrUpdateProfile(pd);
+		if (Strings.isNullOrEmpty(responseMsg)) {
 			response.setSuccess(Boolean.TRUE);
 			response.setResponseMsg("Update Successful!");
+		} else {
+			response.setSuccess(Boolean.FALSE);
+			response.setResponseMsg(responseMsg);
 		}
 
 		return response;

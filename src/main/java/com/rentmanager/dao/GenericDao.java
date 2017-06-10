@@ -16,9 +16,11 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.rentmanager.constants.Constants;
 import com.rentmanager.entity.SelectListData;
 import com.rentmanager.utils.DbUtil;
 import com.rentmanager.utils.HibernateUtils;
+
 /**
  * 
  * @author tanmay
@@ -27,6 +29,43 @@ import com.rentmanager.utils.HibernateUtils;
 public class GenericDao {
 
 	private static Logger logger = LoggerFactory.getLogger(GenericDao.class);
+
+	public <T> T getEntityByProperty(@SuppressWarnings("rawtypes") List<Map> attributesWithOps, Class<T> clazz) {
+
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = HibernateUtils.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(clazz);
+			for (int i = 0; i < attributesWithOps.size(); i++) {
+				if (attributesWithOps.get(i).get(Constants.OPERATOR).equals(Constants.OPERATOR_EQUALS)) {
+					criteria.add(Restrictions.eq(attributesWithOps.get(i).get(Constants.ATTRIBUTE).toString(), attributesWithOps.get(i).get(Constants.VALUE).toString()));
+				}
+				if (attributesWithOps.get(i).get(Constants.OPERATOR).equals(Constants.OPERATOR_NOT_EQUALS)) {
+					criteria.add(Restrictions.ne(attributesWithOps.get(i).get(Constants.ATTRIBUTE).toString(), attributesWithOps.get(i).get(Constants.VALUE).toString()));
+				}
+			}
+			criteria.setMaxResults(1);
+			@SuppressWarnings("unchecked")
+			List<Object> entityList = criteria.list();
+			tx.commit();
+			tx = null;
+
+			if (entityList != null && entityList.size() > 0) {
+				Object obj = entityList.get(0);
+				return clazz.cast(obj);
+			}
+
+		} catch (Exception e) {
+			logger.error("Error While Fetching Entity {}.", e);
+		} finally {
+			DbUtil.closeSession(session);
+			DbUtil.rollBackTransaction(tx);
+		}
+
+		return null;
+	}
 
 	public <T> T getEntityByProperty(Map<String, Object> property, Class<T> clazz) {
 		Session session = null;

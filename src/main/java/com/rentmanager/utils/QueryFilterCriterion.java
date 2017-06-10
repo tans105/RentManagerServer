@@ -1,7 +1,7 @@
 /*******************************************************************************
  *    
  * 	
- * 	  Project Benq WebService, all source code and data files except images,
+ * 	  Project BFLSales, all source code and data files except images,
  * 	  Copyright 2008-2015 Grit-Innovation Software Pvt. Ltd., India
  * 	
  * 	
@@ -9,18 +9,10 @@
 package com.rentmanager.utils;
 
 import java.io.Serializable;
-/**
- * 
- * @author tanmay
- *
- */
+
 public class QueryFilterCriterion implements Serializable{
 	
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	public static final String OPERATOR_EQUALS= " = " ;
 	public static final String OPERATOR_LESS_THAN=" < ";
 	public static final String OPERATOR_LESS_THAN_OR_EQUALS=" <= ";

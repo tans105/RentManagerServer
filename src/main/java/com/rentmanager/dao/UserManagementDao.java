@@ -57,7 +57,7 @@ public class UserManagementDao {
 		attributes.put("email", pd.getEmail());
 		pdCopy = dao.getEntityByProperty(attributes, PersonalDetails.class);
 		if (pdCopy != null) {
-			responseMsg=Constants.MOBILE_NUMBER_EXISTS;
+			responseMsg=Constants.EMAIL_REGISTERED;
 			return responseMsg;
 		}
 		return responseMsg;
