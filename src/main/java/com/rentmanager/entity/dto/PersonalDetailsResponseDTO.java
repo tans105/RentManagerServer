@@ -14,14 +14,14 @@ public class PersonalDetailsResponseDTO {
 	private PersonalDetails personalDetails;
 	private Boolean success;
 	private String responseMsg;
-	private List<String> stateMst;
-	private List<String> idProofMst;
+	private List<Object> stateMst;
+	private List<Object> idProofMst;
 
-	public List<String> getIdProofMst() {
+	public List<Object> getIdProofMst() {
 		return idProofMst;
 	}
 
-	public void setIdProofMst(List<String> idProofMst) {
+	public void setIdProofMst(List<Object> idProofMst) {
 		this.idProofMst = idProofMst;
 	}
 
@@ -57,11 +57,11 @@ public class PersonalDetailsResponseDTO {
 		this.responseMsg = responseMsg;
 	}
 
-	public List<String> getStateMst() {
+	public List<Object> getStateMst() {
 		return stateMst;
 	}
 
-	public void setStateMst(List<String> stateMst) {
+	public void setStateMst(List<Object> stateMst) {
 		this.stateMst = stateMst;
 	}
 

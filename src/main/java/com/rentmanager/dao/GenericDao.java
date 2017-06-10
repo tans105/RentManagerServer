@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,33 @@ public class GenericDao {
 
 	private static Logger logger = LoggerFactory.getLogger(GenericDao.class);
 
+	public List<Object> executeQueryAsList(String qry){
+		
+		Session session = null;
+		Transaction tx = null;
+		List<Object> list = new LinkedList<Object>();
+		try {
+			session = HibernateUtils.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			Query q = session.createSQLQuery(qry);
+			list = q.list();
+			tx.commit();
+			tx = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			{
+				if (tx != null) {
+					tx.rollback();
+					tx = null;
+				}
+				DbUtil.closeSession(session);
+			}
+		}
+
+		return list;
+	}
 	public <T> T getEntityByProperty(@SuppressWarnings("rawtypes") List<Map> attributesWithOps, Class<T> clazz) {
 
 		Session session = null;

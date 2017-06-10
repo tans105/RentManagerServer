@@ -72,62 +72,13 @@ public class ProfileManagementDao {
 		map.clear();
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<String> getStateMst() {
+	public List<Object> getStateMst() {
 		String query = "select name from state_mst order by name";
-		Session session = null;
-		Transaction tx = null;
-		List<String> stateList = new LinkedList<String>();
-		try {
-			session = HibernateUtils.getSessionFactory().openSession();
-			tx = session.beginTransaction();
-			Query q = session.createSQLQuery(query);
-			stateList = q.list();
-			tx.commit();
-			tx = null;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		} finally {
-			{
-				if (tx != null) {
-					tx.rollback();
-					tx = null;
-				}
-				DbUtil.closeSession(session);
-			}
-		}
-
-		return stateList;
+		return new GenericDao().executeQueryAsList(query);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<String> getIdProofMst() {
+	public List<Object> getIdProofMst() {
 		String query = "select name from idproof_mst";
-		Session session = null;
-		Transaction tx = null;
-		List<String> idProofList = new LinkedList<String>();
-		try {
-			session = HibernateUtils.getSessionFactory().openSession();
-			tx = session.beginTransaction();
-			Query q = session.createSQLQuery(query);
-			idProofList = q.list();
-			tx.commit();
-			tx = null;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		} finally {
-			{
-				if (tx != null) {
-					tx.rollback();
-					tx = null;
-				}
-				DbUtil.closeSession(session);
-			}
-		}
-
-		return idProofList;
-
+		return new GenericDao().executeQueryAsList(query);
 	}
 }

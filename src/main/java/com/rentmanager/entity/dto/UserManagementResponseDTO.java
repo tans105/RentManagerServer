@@ -16,15 +16,15 @@ public class UserManagementResponseDTO {
 	private Boolean success;
 	private String responseMsg;
 	private String userId;
-	private List<String> stateMst;
-	private List<String> idProofMst;
+	private List<Object> stateMst;
+	private List<Object> idProofMst;
 	private List<SelectListData> roleMst;
 
-	public List<String> getIdProofMst() {
+	public List<Object> getIdProofMst() {
 		return idProofMst;
 	}
 
-	public void setIdProofMst(List<String> idProofMst) {
+	public void setIdProofMst(List<Object> idProofMst) {
 		this.idProofMst = idProofMst;
 	}
 
@@ -60,11 +60,11 @@ public class UserManagementResponseDTO {
 		this.responseMsg = responseMsg;
 	}
 
-	public List<String> getStateMst() {
+	public List<Object> getStateMst() {
 		return stateMst;
 	}
 
-	public void setStateMst(List<String> stateMst) {
+	public void setStateMst(List<Object> stateMst) {
 		this.stateMst = stateMst;
 	}
 

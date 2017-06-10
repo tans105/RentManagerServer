@@ -31,11 +31,11 @@ public class ProfileManagementService extends GenericService {
 		return dao.saveOrUpdateProfile(pd);
 	}
 
-	public List<String> getStateMst() {
+	public List<Object> getStateMst() {
 		return dao.getStateMst();
 	}
 
-	public List<String> getIdproofMst() {
+	public List<Object> getIdproofMst() {
 		return dao.getIdProofMst();
 	}
 
