@@ -1,11 +1,4 @@
-/*******************************************************************************
- *    
- * 	
- * 	  Project BFLSales, all source code and data files except images,
- * 	  Copyright 2008-2015 Grit-Innovation Software Pvt. Ltd., India
- * 	
- * 	
- *******************************************************************************/
+
 package com.rentmanager.utils;
 
 import java.io.Serializable;
