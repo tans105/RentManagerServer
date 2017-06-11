@@ -2,10 +2,6 @@
 	"admin": 
 	[
 		{
-			"moduleName": "Update Profile",
-			"moduleLink": "profileManagement"
-		},
-		{
 			"moduleName": "User Management",
 			"moduleLink": "userManagement"
 		},
@@ -23,14 +19,19 @@
 		{
 			"moduleName": "Approve Rents",
 			"moduleLink": "approveRent"
+		},
+
+		{
+			"moduleName": "Personal Details",
+			"moduleLink": "personalDetails"
 		}
 	],
 
 	"tenant": 
 	[
 		{
-			"moduleName": "Update Profile",
-			"moduleLink": "profileManagement"
+			"moduleName": "Personal Details",
+			"moduleLink": "personalDetails"
 		}
 	]
 }
