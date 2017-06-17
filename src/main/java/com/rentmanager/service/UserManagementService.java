@@ -1,6 +1,7 @@
 package com.rentmanager.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.base.Strings;
@@ -51,6 +52,10 @@ public class UserManagementService extends GenericService {
 
 	private String validateNewUser(PersonalDetails pd) {
 		return dao.validateProfile(pd);
+	}
+
+	public List<Map<String, Object>> getTableData(String hostelId) {
+		return dao.getTableData(userId, hostelId);
 	}
 
 }

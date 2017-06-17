@@ -66,4 +66,15 @@ public class UserManagementController {
 
 		return response;
 	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "fetchHostelData", method = RequestMethod.GET)
+	public UserManagementResponseDTO fetchTableData(final HttpServletRequest request) throws ServletException {
+		final Claims claims = (Claims) request.getAttribute("claims");
+		UserManagementService service = new UserManagementService(claims.get(Constants.USER_ID).toString());
+		UserManagementResponseDTO response = new UserManagementResponseDTO();
+		response.setTableData(service.getTableData(claims.get(Constants.HOSTEL_ID).toString()));
+		response.setSuccess(Boolean.TRUE);
+		return response;
+	}
 }

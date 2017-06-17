@@ -1,6 +1,7 @@
 package com.rentmanager.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Session;
@@ -50,17 +51,22 @@ public class UserManagementDao {
 		PersonalDetails pdCopy = null;
 		pdCopy = dao.getEntityByProperty(attributes, PersonalDetails.class);
 		if (pdCopy != null) {
-			responseMsg=Constants.MOBILE_NUMBER_EXISTS;
+			responseMsg = Constants.MOBILE_NUMBER_EXISTS;
 			return responseMsg;
 		}
 		attributes.clear();
 		attributes.put("email", pd.getEmail());
 		pdCopy = dao.getEntityByProperty(attributes, PersonalDetails.class);
 		if (pdCopy != null) {
-			responseMsg=Constants.EMAIL_REGISTERED;
+			responseMsg = Constants.EMAIL_REGISTERED;
 			return responseMsg;
 		}
 		return responseMsg;
 	}
 
+	public List<Map<String, Object>> getTableData(String userId, String hostelId) {
+		String query = "select l.user_id,l.hostel_id,pd.first_name,pd.last_name,r.role from login l inner join role_mst r on l.role_id=r.role_id inner join personal_details pd on l.user_id=pd.user_id where l.active='true' and l.hostel_id='" + hostelId + "' order by l.user_id";
+		GenericDao dao = new GenericDao();
+		return dao.executeSQlQueryReturnAsListOfMaps(query);
+	}
 }
