@@ -74,6 +74,7 @@ public class UserManagementController {
 		UserManagementService service = new UserManagementService(claims.get(Constants.USER_ID).toString());
 		UserManagementResponseDTO response = new UserManagementResponseDTO();
 		response.setTableData(service.getTableData(claims.get(Constants.HOSTEL_ID).toString()));
+		response.setTableDataOrder(new String[]{"user_id","first_name","last_name","joining_date","role"});
 		response.setSuccess(Boolean.TRUE);
 		return response;
 	}

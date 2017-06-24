@@ -21,6 +21,7 @@ public class UserManagementResponseDTO {
 	private List<Object> idProofMst;
 	private List<SelectListData> roleMst;
 	private List<Map<String, Object>> tableData;
+	private String[] tableDataOrder;
 
 	public List<Object> getIdProofMst() {
 		return idProofMst;
@@ -92,6 +93,14 @@ public class UserManagementResponseDTO {
 
 	public void setTableData(List<Map<String, Object>> tableData) {
 		this.tableData = tableData;
+	}
+
+	public String[] getTableDataOrder() {
+		return tableDataOrder;
+	}
+
+	public void setTableDataOrder(String[] tableDataOrder) {
+		this.tableDataOrder = tableDataOrder;
 	}
 
 }
