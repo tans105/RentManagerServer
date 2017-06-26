@@ -1,8 +1,5 @@
 package com.rentmanager.tester;
 
-import java.util.List;
-
-import com.rentmanager.entity.GenericFormEntity;
 import com.rentmanager.service.ProfileManagementService;
 
 /**

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.rentmanager.dao.GenericDao;
 import com.rentmanager.dao.ProfileManagementDao;
-import com.rentmanager.dao.UserManagementDao;
 import com.rentmanager.entity.SelectListData;
 import com.rentmanager.entity.database.PersonalDetails;
 import com.rentmanager.entity.database.RoleMst;

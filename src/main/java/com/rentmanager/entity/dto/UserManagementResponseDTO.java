@@ -1,10 +1,10 @@
 package com.rentmanager.entity.dto;
 
 import java.util.List;
-import java.util.Map;
 
 import com.rentmanager.entity.GenericFormEntityBundle;
 import com.rentmanager.entity.SelectListData;
+import com.rentmanager.entity.Table;
 import com.rentmanager.entity.database.PersonalDetails;
 
 /**
@@ -20,8 +20,7 @@ public class UserManagementResponseDTO {
 	private List<Object> stateMst;
 	private List<Object> idProofMst;
 	private List<SelectListData> roleMst;
-	private List<Map<String, Object>> tableData;
-	private String[] tableDataOrder;
+	private Table table;
 
 	public List<Object> getIdProofMst() {
 		return idProofMst;
@@ -87,20 +86,14 @@ public class UserManagementResponseDTO {
 		this.roleMst = roleMst;
 	}
 
-	public List<Map<String, Object>> getTableData() {
-		return tableData;
+	public Table getTable() {
+		return table;
 	}
 
-	public void setTableData(List<Map<String, Object>> tableData) {
-		this.tableData = tableData;
+	public void setTable(Table table) {
+		this.table = table;
 	}
 
-	public String[] getTableDataOrder() {
-		return tableDataOrder;
-	}
-
-	public void setTableDataOrder(String[] tableDataOrder) {
-		this.tableDataOrder = tableDataOrder;
-	}
+	
 
 }

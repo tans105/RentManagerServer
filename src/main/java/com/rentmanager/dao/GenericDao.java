@@ -31,6 +31,7 @@ public class GenericDao {
 
 	private static Logger logger = LoggerFactory.getLogger(GenericDao.class);
 
+	@SuppressWarnings("unchecked")
 	public List<Object> executeQueryAsList(String qry){
 		
 		Session session = null;

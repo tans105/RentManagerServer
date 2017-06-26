@@ -3,6 +3,7 @@ package com.rentmanager.utils;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class QueryFilterCriterion implements Serializable{
 	
 	

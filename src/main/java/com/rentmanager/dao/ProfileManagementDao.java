@@ -2,19 +2,13 @@ package com.rentmanager.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import com.google.common.base.Strings;
 import com.rentmanager.constants.Constants;
 import com.rentmanager.entity.database.PersonalDetails;
-import com.rentmanager.utils.DbUtil;
-import com.rentmanager.utils.HibernateUtils;
 
 /**
  * @author : tanmay

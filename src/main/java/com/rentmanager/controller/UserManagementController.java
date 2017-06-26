@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.common.base.Strings;
 import com.rentmanager.constants.Constants;
 import com.rentmanager.entity.NewUser;
+import com.rentmanager.entity.Table;
 import com.rentmanager.entity.database.PersonalDetails;
 import com.rentmanager.entity.dto.UserManagementResponseDTO;
 import com.rentmanager.service.ProfileManagementService;
@@ -30,6 +31,7 @@ import com.rentmanager.service.UserManagementService;
 @RestController
 @RequestMapping("/api/user")
 public class UserManagementController {
+	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(UserManagementController.class);
 	private static final String RESPONSE_MSG = "responseMsg";
 
@@ -73,8 +75,11 @@ public class UserManagementController {
 		final Claims claims = (Claims) request.getAttribute("claims");
 		UserManagementService service = new UserManagementService(claims.get(Constants.USER_ID).toString());
 		UserManagementResponseDTO response = new UserManagementResponseDTO();
-		response.setTableData(service.getTableData(claims.get(Constants.HOSTEL_ID).toString()));
-		response.setTableDataOrder(new String[]{"user_id","first_name","last_name","joining_date","role"});
+		Table table = new Table();
+		table.setTableData(service.getTableData(claims.get(Constants.HOSTEL_ID).toString()));
+		table.setTableDataOrder(new String[] { "user_id", "first_name", "last_name", "joining_date", "role" });
+		table.setActionsEnabled(Boolean.TRUE);
+		response.setTable(table);
 		response.setSuccess(Boolean.TRUE);
 		return response;
 	}
