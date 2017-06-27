@@ -3,27 +3,32 @@
 	[
 		{
 			"moduleName": "User Management",
-			"moduleLink": "home.userManagement.details"
+			"moduleLink": "home.userManagement.details",
+			"moduleRequestId": "user"
 		},
 
 		{
 			"moduleName": "Rooms Management",
-			"moduleLink": "home.roomManagement"
+			"moduleLink": "home.roomManagement",
+			"moduleRequestId": "room"
 		},
 
 		{
 			"moduleName": "Room Allotment",
-			"moduleLink": "home.roomAllotment"
+			"moduleLink": "home.roomAllotment",
+			"moduleRequestId": "allotRoom"
 		},
 
 		{
 			"moduleName": "Approve Rents",
-			"moduleLink": "home.approveRent"
+			"moduleLink": "home.approveRent",
+			"moduleRequestId": "approveRent"
 		},
 
 		{
 			"moduleName": "Personal Details",
-			"moduleLink": "home.personalDetails"
+			"moduleLink": "home.personalDetails",
+			"moduleRequestId": "profile"
 		}
 	],
 
@@ -31,7 +36,8 @@
 	[
 		{
 			"moduleName": "Personal Details",
-			"moduleLink": "home.personalDetails"
+			"moduleLink": "home.personalDetails",
+			"moduleRequestId": "profile"
 		}
 	]
 }

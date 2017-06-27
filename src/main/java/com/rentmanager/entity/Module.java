@@ -1,4 +1,5 @@
 package com.rentmanager.entity;
+
 /**
  * 
  * @author tanmay
@@ -7,6 +8,7 @@ package com.rentmanager.entity;
 public class Module {
 	private String moduleName;
 	private String moduleLink;
+	private String moduleRequestId;
 
 	public String getModuleName() {
 		return moduleName;
@@ -23,4 +25,14 @@ public class Module {
 	public void setModuleLink(String moduleLink) {
 		this.moduleLink = moduleLink;
 	}
+
+	public String getModuleRequestId() {
+		return moduleRequestId;
+	}
+
+	public void setModuleRequestId(String moduleRequestId) {
+		this.moduleRequestId = moduleRequestId;
+	}
+
+	
 }

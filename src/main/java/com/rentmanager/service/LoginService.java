@@ -28,7 +28,7 @@ import com.rentmanager.tester.JsonFileRead;
  * @author tanmay
  *
  */
-public class LoginService {
+public class LoginService extends GenericService{
 	private LoginDao dao;
 
 	public LoginService() {

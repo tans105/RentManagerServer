@@ -25,6 +25,7 @@ public class Constants {
 	public static final String USER_ADDED_SUCCESSFULLY = "User added Successfully";
 	public static final String MOBILE_NUMBER_EXISTS = "Mobile number already present";
 	public static final String EMAIL_REGISTERED = "Email ID already registered";
+	public static final String UNAUTHORIZED_ACCESS= "Unauthorized access";
 	/*
 	 * Config paths
 	 */

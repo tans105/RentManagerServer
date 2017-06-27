@@ -19,7 +19,7 @@ import org.springframework.web.filter.GenericFilterBean;
 import com.google.gson.Gson;
 import com.rentmanager.constants.Constants;
 import com.rentmanager.entity.dto.GenericResponseDTO;
-import com.rentmanager.service.JWTService;
+import com.rentmanager.service.FilterService;
 
 /**
  * 
@@ -38,8 +38,9 @@ public class JwtFilter extends GenericFilterBean {
 			final String authHeader = request.getHeader(Constants.AUTHORIZATION);
 			GenericResponseDTO genResponse = new GenericResponseDTO();
 			Gson gson = new Gson();
+			FilterService service = new FilterService();
 			if (authHeader == null || !authHeader.startsWith(Constants.BEARER_SPACE)) {
-				setHttpResponse(gson, genResponse, response, Constants.MISSING_AUTH_HEADER, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
+				service.setHttpResponse(gson, genResponse, response, Constants.MISSING_AUTH_HEADER, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
 				return;
 			}
 
@@ -48,33 +49,23 @@ public class JwtFilter extends GenericFilterBean {
 			try {
 				final Claims claims = Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(token).getBody();
 				if (null == claims.get(Constants.USER_ID)) {
-					setHttpResponse(gson, genResponse, response, Constants.INVALID_TOKEN, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
+					service.setHttpResponse(gson, genResponse, response, Constants.INVALID_TOKEN, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
 					return;
 				}
-				JWTService service = new JWTService(claims.get(Constants.USER_ID).toString());
-				if (!service.verifyJWT(token)) {
-					setHttpResponse(gson, genResponse, response, Constants.TOKEN_EXPIRED, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
+				
+				if (!service.verifyJWT(claims.get(Constants.USER_ID).toString(),token)) {
+					service.setHttpResponse(gson, genResponse, response, Constants.TOKEN_EXPIRED, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
 					return;
 				}
 				request.setAttribute("claims", claims);
 				chain.doFilter(req, res);
 			} catch (final SignatureException e) {
-				setHttpResponse(gson, genResponse, response, Constants.INVALID_TOKEN, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
+				service.setHttpResponse(gson, genResponse, response, Constants.INVALID_TOKEN, Boolean.FALSE, HttpStatus.UNAUTHORIZED.value());
 				return;
 			}
 		}
 
 	}
 
-	public void setHttpResponse(Gson gson, GenericResponseDTO genResponse, HttpServletResponse response, String responseMsg, Boolean success, int status) {
-		genResponse.setResponseMsg(responseMsg);
-		genResponse.setSuccess(success);
-		response.setStatus(status);
-		try {
-			response.getWriter().write(gson.toJson(genResponse));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 }

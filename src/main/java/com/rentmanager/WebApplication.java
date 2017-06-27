@@ -8,6 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.rentmanager.filter.JwtFilter;
+import com.rentmanager.filter.ValidateUserAccessFilter;
+
 /**
  * 
  * @author tanmay
@@ -21,6 +23,15 @@ public class WebApplication {
 	public FilterRegistrationBean jwtFilter() {
 		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 		registrationBean.setFilter(new JwtFilter());
+		registrationBean.addUrlPatterns("/api/*");
+
+		return registrationBean;
+	}
+
+	@Bean
+	public FilterRegistrationBean userAuthorizationFilter() {
+		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		registrationBean.setFilter(new ValidateUserAccessFilter());
 		registrationBean.addUrlPatterns("/api/*");
 
 		return registrationBean;
