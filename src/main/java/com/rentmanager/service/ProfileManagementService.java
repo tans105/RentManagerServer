@@ -3,11 +3,13 @@ package com.rentmanager.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.base.Strings;
 import com.rentmanager.dao.GenericDao;
 import com.rentmanager.dao.ProfileManagementDao;
 import com.rentmanager.entity.SelectListData;
 import com.rentmanager.entity.database.PersonalDetails;
 import com.rentmanager.entity.database.RoleMst;
+import com.rentmanager.utils.PasswordUtil;
 
 /**
  * @author : tanmay
@@ -43,6 +45,20 @@ public class ProfileManagementService extends GenericService {
 		attributes.add("roleId");
 		attributes.add("role");
 		return new GenericDao().getSelectListData(RoleMst.class, attributes, null);
+	}
+
+	public Boolean matchPassword(String enteredPassword) {
+		Boolean isMatching = Boolean.FALSE;
+		String storedPassword = dao.getUserPassword(userId);
+		if (!Strings.isNullOrEmpty(storedPassword)) {
+			if (storedPassword.equals(PasswordUtil.encryptPassword(enteredPassword)))
+				isMatching = Boolean.TRUE;
+		}
+		return isMatching;
+	}
+
+	public Boolean updatePassword(String newPassword) {
+		return dao.updateUserPassword(userId, PasswordUtil.encryptPassword(newPassword));
 	}
 
 }

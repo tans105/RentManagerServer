@@ -25,7 +25,12 @@ public class Constants {
 	public static final String USER_ADDED_SUCCESSFULLY = "User added Successfully";
 	public static final String MOBILE_NUMBER_EXISTS = "Mobile number already present";
 	public static final String EMAIL_REGISTERED = "Email ID already registered";
-	public static final String UNAUTHORIZED_ACCESS= "Unauthorized access";
+	public static final String UNAUTHORIZED_ACCESS = "Unauthorized access";
+	public static final String PASSWORD_MATCHING = "Password Matching";
+	public static final String PASSWORD_NOT_MATCH = "Password did not match";
+	public static final String PASSWORD_UPDATE_SUCCESSFULL = "Password Updated Successfully";
+	public static final String PASSWORD_UPDATE_FAILED = "Password Update Failed, Contact Admin!";
+
 	/*
 	 * Config paths
 	 */
@@ -88,27 +93,27 @@ public class Constants {
 
 	public static final String PERSONAL_DETAILS = "personalDetails";
 	public static final String NEW_USER = "newUser";
-	
+
 	/*
 	 * MAP KEYS
 	 */
-	public static final String ATTRIBUTE="attribute";
-	public static final String OPERATOR="operator";
-	public static final String VALUE="value"; 
-	
+	public static final String ATTRIBUTE = "attribute";
+	public static final String OPERATOR = "operator";
+	public static final String VALUE = "value";
+
 	/*
 	 * Operators
 	 */
-	
-	public static final String OPERATOR_EQUALS= " = " ;
-	public static final String OPERATOR_LESS_THAN=" < ";
-	public static final String OPERATOR_LESS_THAN_OR_EQUALS=" <= ";
-	public static final String OPERATOR_GREATER_THAN=" > ";
-	public static final String OPERATOR_GREATER_THAN_OR_EQUALS=" >= ";
-	public static final String OPERATOR_STARTS_WITH=" STARTS ";
-	public static final String OPERATOR_CONTAINS=" CONTAINS ";
-	public static final String OPERATOR_IN=" IN ";
-	public static final String OPERATOR_ALLOCATED= "IS";
-	public static final String OPERATOR_NOT_EQUALS="<>";
+
+	public static final String OPERATOR_EQUALS = " = ";
+	public static final String OPERATOR_LESS_THAN = " < ";
+	public static final String OPERATOR_LESS_THAN_OR_EQUALS = " <= ";
+	public static final String OPERATOR_GREATER_THAN = " > ";
+	public static final String OPERATOR_GREATER_THAN_OR_EQUALS = " >= ";
+	public static final String OPERATOR_STARTS_WITH = " STARTS ";
+	public static final String OPERATOR_CONTAINS = " CONTAINS ";
+	public static final String OPERATOR_IN = " IN ";
+	public static final String OPERATOR_ALLOCATED = "IS";
+	public static final String OPERATOR_NOT_EQUALS = "<>";
 
 }

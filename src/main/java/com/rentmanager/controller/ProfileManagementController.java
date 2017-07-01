@@ -61,4 +61,40 @@ public class ProfileManagementController {
 
 		return response;
 	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "validatePassword", method = RequestMethod.POST)
+	public PersonalDetailsResponseDTO validatePassword(@RequestBody final String enteredPassword, final HttpServletRequest request) throws ServletException {
+		final Claims claims = (Claims) request.getAttribute("claims");
+		ProfileManagementService service = new ProfileManagementService(claims.get(Constants.USER_ID).toString());
+		PersonalDetailsResponseDTO response = new PersonalDetailsResponseDTO();
+		Boolean isMatching = service.matchPassword(enteredPassword);
+		if (isMatching) {
+			response.setSuccess(Boolean.TRUE);
+			response.setResponseMsg(Constants.PASSWORD_MATCHING);
+		} else {
+			response.setSuccess(Boolean.FALSE);
+			response.setResponseMsg(Constants.PASSWORD_NOT_MATCH);
+		}
+
+		return response;
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "updatePassword", method = RequestMethod.POST)
+	public PersonalDetailsResponseDTO updatePassword(@RequestBody final String newPassword, final HttpServletRequest request) throws ServletException {
+		final Claims claims = (Claims) request.getAttribute("claims");
+		ProfileManagementService service = new ProfileManagementService(claims.get(Constants.USER_ID).toString());
+		PersonalDetailsResponseDTO response = new PersonalDetailsResponseDTO();
+		Boolean isMatching = service.updatePassword(newPassword);
+		if (isMatching) {
+			response.setSuccess(Boolean.TRUE);
+			response.setResponseMsg(Constants.PASSWORD_UPDATE_SUCCESSFULL);
+		} else {
+			response.setSuccess(Boolean.FALSE);
+			response.setResponseMsg(Constants.PASSWORD_UPDATE_FAILED);
+		}
+
+		return response;
+	}
 }

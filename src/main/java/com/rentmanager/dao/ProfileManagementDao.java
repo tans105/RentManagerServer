@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import com.google.common.base.Strings;
 import com.rentmanager.constants.Constants;
+import com.rentmanager.entity.database.Login;
 import com.rentmanager.entity.database.PersonalDetails;
 
 /**
@@ -74,5 +74,20 @@ public class ProfileManagementDao {
 	public List<Object> getIdProofMst() {
 		String query = "select name from idproof_mst";
 		return new GenericDao().executeQueryAsList(query);
+	}
+
+	public String getUserPassword(String userId) {
+		GenericDao dao = new GenericDao();
+		HashMap<String, Object> filter = new HashMap<String, Object>();
+		filter.put(Constants.USER_ID, userId);
+		Login login = dao.getEntityByProperty(filter, Login.class);
+		return login.getPassword();
+	}
+
+	public Boolean updateUserPassword(String userId, String encryptedNewPassword) {
+		Login login = new LoginDao().getLogin(userId);
+		login.setPassword(encryptedNewPassword);
+		GenericDao dao = new GenericDao();
+		return dao.saveOrUpdateEntity(login);
 	}
 }

@@ -2,17 +2,17 @@ package com.rentmanager.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 /**
  * 
  * @author tanmay
  *
  */
 
-
 public class PasswordUtil {
 	private static MessageDigest md;
 
-	public String encryptPassword(String pass) {
+	public static String encryptPassword(String pass) {
 		try {
 			md = MessageDigest.getInstance("MD5");
 			byte[] passBytes = pass.getBytes();
